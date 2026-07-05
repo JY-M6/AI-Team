@@ -88,6 +88,9 @@ Docker:
 project-name/
 ├── AGENTS.md
 ├── README.md
+├── .ai-team/
+│   ├── PROJECT_OPERATIONS.md
+│   └── HANDOFF.md
 ├── backend/
 ├── frontend/
 ├── docs/
@@ -181,6 +184,28 @@ project-name/
 | 部署上线 | 未开始 | @运维部署工程师 |
 | 文档整理 | 未开始 | @文档工程师 |
 | 增长运营 | 未开始 | @增长运营 |
+| 操作记录 | 未开始 | @AI项目书记 |
+
+---
+
+## 📝 操作文档
+
+每次项目更新后，必须同步维护：
+
+| 文档 | 作用 |
+|---|---|
+| `.ai-team/PROJECT_OPERATIONS.md` | 长期实时维护的项目操作记录 |
+| `.ai-team/HANDOFF.md` | 切换 AI 工具前生成的临时交接摘要 |
+
+记录内容至少包括：
+
+- 当前任务状态。
+- 完成内容。
+- 修改文件。
+- 验证方式。
+- 剩余风险。
+- 下一步建议。
+- 版本更新说明。
 
 ---
 
@@ -194,6 +219,7 @@ project-name/
 - [ ] 制定上线宣传和种子用户获取方案。
 - [ ] 建立用户反馈收集方式。
 - [ ] 更新根目录 README 的项目列表。
+- [ ] 更新 PROJECT_OPERATIONS.md 和 HANDOFF.md。
 
 ---
 
