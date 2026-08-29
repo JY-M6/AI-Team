@@ -1,423 +1,1536 @@
-# PROJECT OPERATIONS
-
-This file is the live operation log for this project.
-
-It is written for AI coding agents.
-Before continuing work, read this file first, then inspect the referenced files.
-
----
-
-## 1. Project Identity
-
-Project name: 钱迹
-
-Project path: `projects/钱迹`
-
-Parent workspace: `D:\AI-Team\ai-team-workspace`
-
-Current branch: `main`
-
-Main rules: `AGENTS.md`
-
-Project rules: `projects/钱迹/AGENTS.md`
-
----
-
-## 2. Current Project Stage
-
-Current stage: planning and static prototype exploration
-
-Current active role: @AI项目书记
-
-Current objective: establish real-time operation documents and record v2 role update.
-
-Current task status: DONE
-
----
-
-## 3. Confirmed Requirements
-
-1. 钱迹 is an intelligent bookkeeping mini-program.
-2. MVP includes manual bookkeeping, calendar bills, daily details, monthly statistics, AI consumption advice, simplified finance product information, and AI finance assistance.
-3. AI finance content must include risk warnings and must not make investment decisions for users.
-4. Growth operations must consider launch promotion, seed users, feedback collection, and product iteration.
-5. Operation docs must be updated after each project iteration.
-
----
-
-## 4. Rejected / Avoided Directions
-
-1. Do not implement automatic payment bill import in the first version.
-2. Do not implement OCR receipt recognition in the first version.
-3. Do not implement multi-ledger or family shared ledger in the first version.
-4. Do not let AI buy, redeem, transfer funds, or promise financial returns.
-5. Do not skip operation-document updates after task completion.
-
----
-
-## 5. Tech Stack
-
-Frontend: static prototype currently present under `projects/钱迹/frontend/`; final mini-program stack is not confirmed.
-
-Backend: unknown
-
-Database: unknown
-
-Cache: unknown
-
-AI: API-based integration planned; provider unknown.
-
-Testing: unknown
-
-Deployment: planned test target documented in `projects/钱迹/docs/deployment.md`
-
-Design: young trendy style
-
-Docs: `README.md`, `docs/requirements.md`, `docs/design.md`, `docs/ai.md`, `docs/growth.md`, `docs/api.md`, `docs/database.md`, `docs/deployment.md`.
-
----
-
-## 6. Important Files To Read First
-
-1. `projects/钱迹/README.md`
-2. `projects/钱迹/AGENTS.md`
-3. `projects/钱迹/docs/requirements.md`
-4. `projects/钱迹/docs/design.md`
-5. `projects/钱迹/docs/ai.md`
-6. `projects/钱迹/docs/growth.md`
-7. `projects/钱迹/docs/api.md`
-8. `projects/钱迹/docs/database.md`
-9. `projects/钱迹/docs/deployment.md`
-10. `projects/钱迹/frontend/index.html`
-
----
-
-## 7. Task Board
-
-### IN_PROGRESS
-
-None.
-
----
-
-### TODO
-
-#### Task ID: QJ-TODO-001
-
-Task name: Confirm mini-program technical stack
-
-Responsible role: @架构师
-
-Reason: The project has a static frontend prototype, but the real mini-program framework is not confirmed.
-
-Depends on: user confirmation
-
-Expected output: technology comparison and recommended implementation path.
-
-#### Task ID: QJ-TODO-002
-
-Task name: Validate static prototype
-
-Responsible role: @测试工程师
-
-Reason: Static prototype files are present and should be reviewed for layout, responsiveness, and missing states.
-
-Depends on: browser verification
-
-Expected output: prototype test notes and issues.
-
-#### Task ID: QJ-TODO-003
-
-Task name: Convert growth plan into launch checklist
-
-Responsible role: @增长运营
-
-Reason: Growth document exists, but launch checklist and feedback form are not yet created.
-
-Depends on: MVP confirmation
-
-Expected output: launch checklist, seed user plan, feedback form draft.
-
----
-
-### DONE
-
-#### Task ID: QJ-DONE-001
-
-Task name: Establish 钱迹 project documentation
-
-Responsible role: @项目总控 / @文档工程师 / @增长运营
-
-Completed at: 2026-07-05
-
-Completed work:
-
-1. Created project-level README and AGENTS rules.
-2. Created requirements, design, AI, and growth docs.
-3. Added root README project index entry.
-4. Added operation documentation mechanism in v2.
-
-Files changed:
-
-1. `projects/钱迹/README.md`
-2. `projects/钱迹/AGENTS.md`
-3. `projects/钱迹/docs/requirements.md`
-4. `projects/钱迹/docs/design.md`
-5. `projects/钱迹/docs/ai.md`
-6. `projects/钱迹/docs/growth.md`
-7. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
-8. `projects/钱迹/.ai-team/HANDOFF.md`
-9. `projects/钱迹/docs/api.md`
-10. `projects/钱迹/docs/database.md`
-11. `projects/钱迹/docs/deployment.md`
-12. `projects/钱迹/frontend/index.html`
-13. `projects/钱迹/frontend/styles.css`
-14. `projects/钱迹/frontend/app.js`
-
-Validation:
-
-1. Documentation consistency checked with `rg`.
-2. Markdown whitespace checked with `git diff --check`.
-
-Remaining risks:
-
-1. Actual mini-program stack is not confirmed.
-2. Static prototype has not been visually verified in browser in this iteration.
-3. Backend, database, and deployment are still planning documents only.
-
----
-
-### CANCELLED
-
-None.
-
----
-
-## 8. Recent File Changes
-
-| Time | File | Change | Role |
+# 钱迹 PROJECT OPERATIONS
+
+> 文档性质：面向 AI 协作工具的项目实时操作记录
+>
+> 更新时间：2026-08-29
+>
+> 当前阶段：Vue 3 网页端与 WebFlux 后端 P0 核心链路联调收口
+
+## 记录规范
+
+1. 每项任务使用连续编号，记录负责角色、完成时间、完成内容、修改文件、验证、风险和状态。
+2. 新记录追加在“任务索引”和任务详情中；历史内容只修正事实错误，不删除。
+3. “页面原型”“模拟数据”“真实后端能力”必须明确区分。
+4. `HANDOFF.md` 只保留当前状态；本文件保留长期过程。
+5. 每轮运行时代码修改至少执行 `npm run build` 和 `git diff --check`。
+
+## 当前事实
+
+| 项目 | 当前状态 |
+|---|---|
+| 前端 | Vue 3 + Vite；认证、账单、日历、统计、预算、账户和分类已接后端 |
+| 图表 | ECharts |
+| 导航 | WebGL2 + gl-matrix |
+| 账单数据 | 登录后通过后端 API 读写；未登录原型数据仅作展示兜底 |
+| AI | 前端为模拟分析；后端输出校验门已实现，真实模型 API 与 SSE 尚未接入 |
+| 理财行情 | 模拟数据，真实数据源未确认 |
+| 后端 | Java 21 + Spring Boot 3.5.13 WebFlux；P0 认证、账本、账户、账单、转账、分类、统计和预算已实现 |
+| 数据库 | MySQL 8 的 `qianji` 数据库已完成 V1/V2/V3/V4，4 条迁移均验证成功 |
+| 微信小程序 | 未创建，技术路线待确认 |
+
+## 任务索引
+
+| 编号 | 日期 | 内容 | 状态 |
 |---|---|---|---|
-| 2026-07-05 | `projects/钱迹/docs/growth.md` | Added growth operations plan | @增长运营 |
-| 2026-07-05 | `projects/钱迹/docs/api.md` | Added planned API scope | @文档工程师 |
-| 2026-07-05 | `projects/钱迹/docs/database.md` | Added planned data objects | @数据库工程师 |
-| 2026-07-05 | `projects/钱迹/docs/deployment.md` | Added deployment planning notes | @运维部署工程师 |
-| 2026-07-05 | `projects/钱迹/frontend/` | Added static responsive prototype files | @前端工程师 |
-| 2026-07-05 | `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md` | Added live operation record | @AI项目书记 |
-| 2026-07-05 | `projects/钱迹/.ai-team/HANDOFF.md` | Added handoff summary | @AI项目书记 |
+| Task 001 | 2026-07-05 | 建立项目书记机制与操作文档 | DONE |
+| Task 002 | 2026-07-12 | 导航图标直达与统计图动态交互 | DONE |
+| Task 003 | 2026-07-12 | 首页卡片动效修复 | DONE |
+| Task 004 | 2026-07-12 | 统计饼图迁移到 ECharts | DONE |
+| Task 005 | 2026-07-12 | 每日动态图与账单增删改 | DONE |
+| Task 006 | 2026-07-12 | 个人中心设置子页与导航视觉升级 | DONE |
+| Task 007 | 2026-07-12 | 日历年份控件与详情日期切换 | DONE |
+| Task 008 | 2026-07-12 | 理财产品列表百分比显示修复 | DONE |
+| Task 009 | 2026-07-12 | 网页端布局优化 | DONE |
+| Task 010 | 2026-07-12 | 理财详情显示修复与文档规范化 | DONE |
+| Task 011 | 2026-07-12 | 页面穿模修复与分层切换动画 | DONE |
+| Task 012 | 2026-07-12 | 悬浮按钮动效与侧栏自动收回 | DONE |
+| Task 013 | 2026-07-12 | 自定义日期选择器与后端架构分析 | DONE |
+| Task 014 | 2026-07-13 | 记账浮窗、月份控件与浏览器 Qwen | DONE |
+| Task 015 | 2026-07-13 | 修复跨页面打开记账浮窗 | DONE |
+| Task 016 | 2026-07-13 | 倾斜卡片方向光效 | DONE |
+| Task 017 | 2026-07-13 | 竖屏底部导航补充首页 | DONE |
+| Task 018 | 2026-07-13 | 确认 WebFlux + SSE 后端技术路线 | DONE |
+| Task 019 | 2026-07-13 | 修复浏览器 Qwen 乱码输出 | DONE |
+| Task 020 | 2026-07-13 | 建立 WebFlux 后端骨架与 P0 数据库迁移 | DONE |
+| Task 021 | 2026-07-13 | 实现用户名密码认证、JWT 会话与注册默认数据 | DONE |
+| Task 022 | 2026-07-14 | 建立大模型输出后端校验门与校验后 SSE 契约 | DONE |
+| Task 023 | 2026-07-14 | 实现当前用户账本与账户查询 | DONE |
+| Task 024 | 2026-07-14 | 实现收入支出记账与流水基础查询 | DONE |
+| Task 025 | 2026-07-14 | 统计日周月年全模块联动 | DONE |
+| Task 026 | 2026-07-14 | 精简统计分类标题 | DONE |
+| Task 027 | 2026-07-14 | 实现账单详情修改删除与余额冲销 | DONE |
+| Task 028 | 2026-07-14 | 实现单流水双账户转账 | DONE |
+| Task 029 | 2026-07-14 | P0 核心后端闭环 | DONE |
+| Task 030 | 2026-07-29 | 备份数据库并执行 Flyway V4 | DONE |
+| Task 031 | 2026-07-29 | 前端认证与核心账单 P0 联调 | DONE |
+| Task 032 | 2026-07-29 | 前端统计、首页汇总与预算联调 | DONE |
+| Task 033 | 2026-07-29 | 修复注册后初始化失败 | DONE |
+| Task 034 | 2026-08-29 | 账户与自定义分类管理前端联调 | DONE |
+| Task 035 | 2026-08-29 | 统一项目进度与提交前版本基线 | DONE |
+
+> 说明：下方早期记录沿用历史追加顺序；以上索引是任务编号与状态的权威入口。
+
+### Task 035：统一项目进度与提交前版本基线
+
+负责角色：@项目总控 / @架构师 / @前端工程师 / @后端工程师 / @测试工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-08-29
+
+完成内容：
+
+1. 重新扫描钱迹项目规则、需求、架构、接口、数据库、交接记录、前后端源码和 Git 状态。
+2. 将项目阶段统一为“Vue 3 网页端与 WebFlux 后端 P0 核心链路联调收口”，移除仍停留在静态原型或开发前阶段的旧口径。
+3. 明确已实现能力：用户名密码认证、账单与转账完整生命周期、日历、日周月年统计、预算、账户和自定义分类。
+4. 明确未实现边界：真实 AI 模型与 SSE、标签、搜索与游标分页、真实理财行情、手机号或微信登录、微信小程序和后台管理。
+5. 新增钱迹项目级 `.gitignore`，排除构建产物、运行日志、数据库备份、临时视频帧和视觉导出文件。
+6. 划定钱迹专项提交范围；`星河版/` 独立视觉实验和母项目其他改动保留在本地，不进入本轮基线。
+
+修改文件：
+
+1. `projects/钱迹/.gitignore`
+2. `projects/钱迹/AGENTS.md`
+3. `projects/钱迹/README.md`
+4. `projects/钱迹/docs/requirements.md`
+5. `projects/钱迹/docs/architecture.md`
+6. `projects/钱迹/docs/api.md`
+7. `projects/钱迹/.ai-team/HANDOFF.md`
+8. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
+
+验证方式：
+
+1. `npm run build`：通过，613 个模块完成构建。
+2. `node --check src/legacy-app.js` 与 `node --check src/api.js`：通过。
+3. `mvn -Dtest=AiModelOutputValidatorTests test`：5 个测试通过。
+4. `mvn test`：共识别 16 个测试；5 个单元测试通过，11 个 WebFlux 集成测试因当前宿主无法建立 Netty 本机回环连接而未进入业务断言。
+5. 提交前继续执行暂存内容检查、敏感信息扫描和 `git diff --cached --check`。
+
+风险：
+
+1. 后端当前未常驻运行，真实账号下账户与分类写操作仍待端到端验收。
+2. 完整 WebFlux 集成测试需要在允许建立本机回环连接的环境复验。
+3. 前端生产包包含浏览器模型运行时，存在大体积构建警告，后续需按真实 AI 技术路线决定是否保留。
+
+状态：DONE
+
+### Task 034：账户与自定义分类管理前端联调
+
+负责角色：@项目总控 / @前端工程师 / @后端工程师 / @测试工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-08-29
+
+完成内容：
+
+1. 个人中心资金账户列表改为读取真实账户接口，展示账户类型、名称和余额。
+2. 接入账户新增、编辑、删除和余额校准；写操作携带后端乐观锁版本号，余额校准生成余额调整流水。
+3. 系统支出分类改为只读展示，自定义支出分类接入新增、改名和删除接口。
+4. 账户或分类变更后刷新记账弹窗的账户与分类选择器。
+5. 保留后端尚未覆盖的标签本地原型，并明确“仅保存在当前浏览器”。
+6. 补齐桌面与移动端账户卡片、操作区、编辑表单和分类操作样式。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/api.js`
+2. `projects/钱迹/frontend/src/legacy-template.html`
+3. `projects/钱迹/frontend/src/legacy-app.js`
+4. `projects/钱迹/frontend/src/styles.css`
+5. `projects/钱迹/README.md`
+6. `projects/钱迹/.ai-team/HANDOFF.md`
+7. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
+
+验证方式：
+
+1. `npm run build`：通过，613 个模块完成构建。
+2. `node --check src/legacy-app.js` 与 `node --check src/api.js`：通过。
+3. `git diff --check`：通过。
+4. 浏览器加载无控制台错误；390×844 视口无横向溢出，新增控件均存在且无重复 ID。
+5. 后端 AI 输出校验测试 5 个通过；11 个 WebFlux 集成测试因当前宿主无法建立 Netty 本机回环连接而未进入业务断言。
+
+风险：
+
+1. 后端服务本轮未启动，未使用真实账号执行账户与分类写操作，仍需人工端到端验收。
+2. 标签接口不在 P0 契约内，当前仅本地保存。
+
+状态：DONE
 
 ---
 
-## 9. Key Decisions
+### Task 033：修复注册后初始化失败
 
-### Decision 001
+负责角色：@项目总控 / @前端工程师 / @后端工程师 / @测试工程师 / @AI项目书记
 
-Date: 2026-07-05
+完成时间：2026-07-29
 
-Role: @项目总控
+完成内容：
 
-Decision: 第一版采用年轻潮流型视觉方向，主题切换放到后续规划。
+1. 复现注册后页面提示 `limit必须在1到100之间`。
+2. 确认注册事务实际成功，失败发生在注册后的流水初始化请求。
+3. 将按日流水与分类明细的查询上限统一为后端允许的 100，并提取共享常量。
+4. 修复会话恢复进入首页后地址栏仍停留在 `#login` 的问题。
 
-Reason: Avoid over-designing theme system before MVP validation.
+修改文件：
 
-Impact: UI design and static prototype.
+1. `projects/钱迹/frontend/src/legacy-app.js`
+2. `projects/钱迹/.ai-team/HANDOFF.md`
+3. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
 
-Alternatives: minimalist finance style, warm life ledger style.
+验证方式：
 
-Risk: Trendy style may need user validation.
+1. `npm run build`：通过。
+2. 浏览器刷新后进入 `#overview`，不再显示注册失败。
+3. 首页真实数据为月结余 `¥0.00`、月支出 `¥0.00`、流水 `0 笔`。
+4. 浏览器控制台无错误或警告。
 
-### Decision 002
+风险：
 
-Date: 2026-07-05
+1. 单周期分类明细最多展示 100 条，超出部分待 P1 游标分页解决。
 
-Role: @AI项目书记
-
-Decision: 钱迹 must maintain `PROJECT_OPERATIONS.md` and `HANDOFF.md`.
-
-Reason: Project state should be recoverable by future AI agents.
-
-Impact: All future project iterations.
-
-Alternatives: one-time handoff only.
-
-Risk: Requires discipline until automated hooks exist.
+状态：DONE
 
 ---
 
-## 10. API Status
+### Task 032：前端统计、首页汇总与预算联调
 
-Implemented APIs: none
+负责角色：@项目总控 / @前端工程师 / @后端工程师 / @测试工程师 / @文档工程师 / @AI项目书记
 
-Designed but not implemented APIs:
+完成时间：2026-07-29
 
-1. User login/current user
-2. Bill CRUD/query
-3. Category query/manage
-4. Calendar monthly summary
-5. Statistics query
-6. Budget query/update
-7. AI consumption analysis
-8. Finance product query
-9. Feedback submit
+完成内容：
 
-Unclear APIs:
+1. 首页月结余、月支出、流水数和预算进度接入后端汇总与预算接口。
+2. 统计页按本月逐日、本月逐周、近 6 月和近 5 年请求真实趋势数据。
+3. 分类饼图与分类列表改为按后端分类结果动态生成，不再限制为固定五类。
+4. 点击分类时按当前周期和分类加载账单明细，支持多个分类同时展开或全部收起。
+5. 预算设置接入本月总预算、餐饮和购物分类预算，并保留后端乐观锁版本。
+6. 账单新增、修改、删除成功后同步刷新首页汇总、统计和预算状态。
+7. ECharts 改为进入详情或统计页面后再初始化，清除隐藏容器尺寸警告。
 
-1. Mini-program login flow
-2. AI provider integration
-3. Finance data source
+修改文件：
 
----
+1. `projects/钱迹/frontend/src/api.js`
+2. `projects/钱迹/frontend/src/legacy-template.html`
+3. `projects/钱迹/frontend/src/legacy-app.js`
+4. `projects/钱迹/README.md`
+5. `projects/钱迹/.ai-team/HANDOFF.md`
+6. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
 
-## 11. Database Status
+验证方式：
 
-Designed tables: none
+1. `npm run build`：通过。
+2. `mvn test`：16 个测试通过，0 失败、0 错误、0 跳过。
+3. 后端健康检查：`http://127.0.0.1:8080/actuator/health` 返回 HTTP 200 / UP。
+4. 干净浏览器回归：登录页无 JavaScript 错误、无 ECharts 尺寸警告、无横向溢出。
 
-Implemented tables: none
+风险：
 
-Pending migrations: none
+1. 未使用用户真实账号提交登录表单，因此真实账本的统计数值和预算写入需要人工验收。
+2. 分类明细接口单次最多拉取 200 条，P1 游标分页完成前，大数据周期仅展示最近限制范围内的账单。
+3. 账户与分类管理设置页仍未联调。
 
-Risks:
+下一步：
 
-1. User data isolation must be designed before implementation.
-2. Money fields must avoid floating-point errors.
-3. AI analysis records should avoid unnecessary private details.
+1. 接入账户新增、修改、删除和余额校准。
+2. 接入自定义收支分类新增、修改、删除。
+3. 完成真实账号端到端验收并补齐冲突与余额不足提示。
 
----
-
-## 12. Frontend Status
-
-Implemented pages: static responsive prototype files are present under `projects/钱迹/frontend/`.
-
-Designed but not implemented pages:
-
-1. Home
-2. Add bill
-3. Calendar
-4. Daily bill
-5. Statistics
-6. AI assistant
-7. Finance
-8. Mine
-
-Pending states:
-
-1. Loading
-2. Empty
-3. Error
-4. Permission denied
-5. AI authorization
-
-Risks:
-
-1. Static prototype may not match final mini-program framework.
-2. Visual verification is still needed.
+状态：DONE
 
 ---
 
-## 13. AI Feature Status
+### Task 031：前端认证与核心账单 P0 联调
 
-Planned AI features:
+负责角色：@项目总控 / @前端工程师 / @后端工程师 / @测试工程师 / @文档工程师 / @AI项目书记
 
-1. Consumption habit analysis
-2. Budget control suggestions
-3. Finance product explanation
-4. Finance assistance with risk warning
+完成时间：2026-07-29
 
-Implemented AI features: none
+完成内容：
 
-Prompt files: none
+1. 新增统一 API 客户端，支持统一响应解析、JWT 请求头、刷新令牌轮换、401 清理会话和错误消息。
+2. 将登录页由手机号验证码原型改为后端已支持的用户名密码登录与注册。
+3. 登录后加载当前用户、默认账本、账户、支出分类和收入分类。
+4. 将账单新增、修改、删除接入真实后端；修改和删除携带后端 `version` 乐观锁。
+5. 支持收入、支出和单流水双账户转账，转账时校验转入与转出账户不同。
+6. 登录后按月加载真实日历摘要，并按日加载流水明细；账单变更后同步刷新日历与每日明细。
+7. Vite 开发环境新增 `/api` 到 `127.0.0.1:8080` 的代理。
 
-RAG status: not planned yet
+修改文件：
 
-Known AI risks:
+1. `projects/钱迹/frontend/src/api.js`
+2. `projects/钱迹/frontend/src/legacy-template.html`
+3. `projects/钱迹/frontend/src/legacy-app.js`
+4. `projects/钱迹/frontend/src/styles.css`
+5. `projects/钱迹/frontend/vite.config.js`
+6. `projects/钱迹/README.md`
+7. `projects/钱迹/.ai-team/HANDOFF.md`
+8. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
 
-1. Must not make investment decisions.
-2. Must not promise returns.
-3. Must not read unauthorized private data.
+验证方式：
 
----
+1. `npm run build`：通过。
+2. `mvn test`：16 个测试通过，0 失败、0 错误、0 跳过。
+3. 浏览器桌面验证：未登录自动进入登录页；登录/注册模式切换和昵称显隐正确。
+4. 浏览器移动端验证：`390 × 844` 下登录卡片无横向溢出。
+5. Vite 服务：`http://127.0.0.1:5181/` 返回 HTTP 200。
 
-## 14. Testing Status
+风险：
 
-Tests run:
+1. 本轮没有明文数据库密码，因此未启动连接真实 MySQL 的常驻后端做端到端注册与账单写入冒烟。
+2. 统计、预算、账户管理和分类管理页面仍需继续联调。
+3. 页面初始化隐藏 ECharts 容器时仍有尺寸警告，不影响本轮认证与账单链路。
 
-1. `git diff --check`
-2. `rg` documentation coverage checks
+下一步：
 
-Tests passed: formatting checks passed before commit.
+1. 由用户在本机交互输入数据库密码后启动后端，完成真实 MySQL 端到端冒烟。
+2. 接入首页汇总、统计日周月年、分类结构与预算接口。
+3. 接入账户、分类设置页及对应错误状态。
 
-Tests failed: none
-
-Tests not run:
-
-1. Browser visual verification of static prototype.
-2. Automated frontend tests.
-
-Reason tests not run: current task is team role and documentation mechanism update.
-
-Recommended next tests:
-
-1. Open `projects/钱迹/frontend/index.html` in browser.
-2. Verify mobile and desktop layout.
-3. Check page navigation and text overflow.
-
----
-
-## 15. Deployment Status
-
-Deployment target: `192.168.100.128` planned test host, not deployed.
-
-Deployment files: `projects/钱迹/docs/deployment.md`
-
-Deployment completed: no
-
-Deployment pending: yes
-
-Deployment risks:
-
-1. Tech stack is not confirmed.
-2. No backend service exists yet.
+状态：DONE
 
 ---
 
-## 16. Known Risks
+### Task 030：备份数据库并执行 Flyway V4
 
-1. Mini-program technical route is not confirmed.
-2. Finance product data source is not confirmed.
-3. AI provider is not confirmed.
-4. Static prototype has not been visually verified in this iteration.
-5. Operation document updates are rule-based, not hook-enforced.
+负责角色：@项目总控 / @数据库工程师 / @后端工程师 / @测试工程师 / @文档工程师 / @AI项目书记
 
----
+完成时间：2026-07-29
 
-## 17. Next AI Agent Instructions
+完成内容：
 
-The next AI agent should:
+1. 确认目标为本机 `127.0.0.1:3307` 的 `qianji` 数据库，执行前仅存在成功的 V1/V2/V3。
+2. 使用 `mysqldump --single-transaction --no-tablespaces` 完成 V4 前备份。
+3. 新增安全迁移脚本 `migrate-qianji-v4.ps1`，密码仅在本机交互输入并保留于迁移进程内存。
+4. 通过 Spring Boot 启动期 Flyway 执行 `V4__add_transaction_balance_delta.sql`。
+5. 验证 Flyway V4 `success=1`、`transactions.balance_delta` 字段和 `chk_transactions_adjustment_delta` CHECK 约束存在。
 
-1. Read this file first.
-2. Inspect `projects/钱迹/frontend/index.html` before making frontend decisions.
-3. Ask the user to confirm mini-program technical stack before implementing runtime code.
-4. Keep operation docs updated after every iteration.
-
-The next AI agent must not:
-
-1. Claim finance advice is investment advice.
-2. Commit real API keys or passwords.
-3. Delete existing project files without explicit confirmation.
-4. Skip `PROJECT_OPERATIONS.md` updates after work.
-
-Recommended next role: @项目总控
-
-Recommended next prompt:
+备份信息：
 
 ```text
-请读取钱迹 PROJECT_OPERATIONS.md，判断下一步先做技术选型、原型验证，还是继续补产品需求。
+文件：projects/钱迹/backend/backups/qianji-before-v4-20260729-144258.sql
+大小：23489 bytes
+SHA-256：C91CB81559FA31ECEC789073DCE1011C3CC13C74D7AE765B2E3AB6E2C8A36732
+Git：由 **/backups/ 规则忽略
 ```
+
+修改文件：
+
+1. `.gitignore`
+2. `projects/钱迹/backend/scripts/migrate-qianji-v4.ps1`
+3. `projects/钱迹/README.md`
+4. `projects/钱迹/backend/README.md`
+5. `projects/钱迹/docs/database.md`
+6. `projects/钱迹/.ai-team/HANDOFF.md`
+7. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
+
+验证方式：
+
+1. Flyway 记录：V4 `add transaction balance delta`，`success=1`，执行时间为 2026-07-29 15:39:25。
+2. `SHOW CREATE TABLE transactions`：确认字段和 CHECK 约束存在。
+3. `mvn test`：16 个测试通过，0 失败、0 错误、0 跳过。
+4. 真实 MySQL 启动验证：后端在 V4 迁移后成功启动 Netty。
+
+风险：
+
+1. 备份包含本地数据库数据，只能保存在被 Git 忽略的本机目录，不得提交或发送。
+2. 高并发账户冲突和预算生成列唯一索引仍需后续专项压测。
+
+下一步：
+
+1. 开始前端认证与核心账务接口联调。
+2. 用真实接口替换浏览器本地账单、统计和预算示例数据。
+
+状态：DONE
 
 ---
 
-## 18. Open Questions For User
+### Task 028：实现单流水双账户转账
 
-1. 钱迹最终采用微信原生小程序、uni-app、Taro，还是先保留静态原型？
-2. 第一版是否需要后端服务？
-3. AI API 供应商选择哪个？
-4. 理财产品数据第一版用模拟数据还是接真实 API？
+负责角色：@项目总控 / @需求分析师 / @架构师 / @后端工程师 / @数据库工程师 / @测试工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-07-14
+
+完成内容：
+
+1. 扩展 `POST /api/v1/transactions` 支持 `TRANSFER`，转账只保存一条流水。
+2. 使用 `account_id` 表示转出账户，使用 `target_account_id` 表示转入账户，转账分类保持为空。
+3. 校验双方账户属于当前用户的同一账本且不能相同，越权账户统一按不存在处理。
+4. 在同一响应式事务中扣减转出账户并增加转入账户，按账户 ID 固定更新顺序降低并发死锁风险。
+5. 转出余额不足返回 `INSUFFICIENT_BALANCE`，账户版本冲突返回 `VERSION_CONFLICT`，任一失败均整体回滚。
+6. 交易响应新增 `targetAccountId` 和 `targetAccountName`，列表和详情均可展示转入账户。
+7. `accountId` 流水筛选同时匹配转出或转入账户，相同 `requestId` 不重复执行转账。
+8. 转账修改与删除暂不支持，明确返回 `TRANSACTION_TYPE_NOT_SUPPORTED`。
+
+修改文件：
+
+1. `projects/钱迹/backend/src/main/java/com/qianji/ledger/CreateTransactionRequest.java`
+2. `projects/钱迹/backend/src/main/java/com/qianji/ledger/TransactionResponse.java`
+3. `projects/钱迹/backend/src/main/java/com/qianji/ledger/TransactionService.java`
+4. `projects/钱迹/backend/src/test/java/com/qianji/QianjiApplicationTests.java`
+5. `projects/钱迹/backend/README.md`
+6. `projects/钱迹/docs/api.md`
+7. `projects/钱迹/.ai-team/HANDOFF.md`
+8. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
+
+验证结果：
+
+- `mvn test`：13 个测试通过，0 失败、0 错误。
+- 测试使用 R2DBC H2，不连接或修改真实 MySQL。
+- 已验证正常转账、单流水、双方余额、目标账户响应、重复请求幂等、同账户拒绝、余额不足、目标账户越权和转账删除拒绝。
+
+风险：
+
+1. 转账修改和删除尚未实现，需在账户管理稳定后设计双账户冲销。
+2. 前端尚未接入后端转账接口。
+3. 本轮未向真实 MySQL 写入测试数据；表结构继续沿用已验证的 V1/V2/V3。
+
+状态：DONE
+
+---
+
+### Task 029：P0 核心后端闭环
+
+负责角色：@项目总控 / @架构师 / @后端工程师 / @数据库工程师 / @测试工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-07-14
+
+完成内容：
+
+1. 完成账户新增、修改、余额非零停用保护和余额校准；校准在同一响应式事务中写入有符号 `ADJUSTMENT` 平账流水。
+2. 完成单流水双账户转账修改和删除；旧、新账户差额合并后按账户 ID 升序更新。
+3. 完成系统与自定义分类查询、自定义分类增改删、系统分类只读和跨用户隔离。
+4. 完成月历，以及日、周、月、年汇总、趋势和分类占比接口；统计排除转账与平账流水。
+5. 完成月总预算和分类预算，返回已用、剩余、使用率、提醒和超支状态，并使用乐观锁保护修改。
+6. 新增 V4 迁移文件，为余额校准流水增加 `balance_delta`；未执行真实 MySQL 迁移。
+
+修改范围：
+
+1. `projects/钱迹/backend/src/main/java/com/qianji/ledger/`
+2. `projects/钱迹/backend/src/main/java/com/qianji/report/`
+3. `projects/钱迹/backend/src/main/java/com/qianji/budget/`
+4. `projects/钱迹/backend/src/main/resources/db/migration/V4__add_transaction_balance_delta.sql`
+5. `projects/钱迹/backend/src/test/`
+6. `projects/钱迹/backend/README.md`
+7. `projects/钱迹/docs/api.md`
+8. `projects/钱迹/docs/database.md`
+9. `projects/钱迹/.ai-team/HANDOFF.md`
+
+验证方式：
+
+1. `mvn test`：通过。
+2. 共 16 个测试，0 失败、0 错误、0 跳过。
+3. 集成测试覆盖账户校准幂等、余额差额、转账修改删除、分类权限、四种统计粒度、月历、总预算和分类预算。
+
+风险：
+
+1. 当时 V4 尚未执行到真实 MySQL；该风险已由 Task 030 的备份、迁移和验证解决。
+2. 统计接口当前未启用 Caffeine 缓存，大数据量性能需在真实数据压测后决定是否启用。
+3. 前端仍使用本地示例数据，尚未联调本轮接口。
+
+下一步：
+
+1. 确认并执行真实 MySQL V4 迁移验证。
+2. 开始前端 P0 接口联调。
+3. P1 再处理标签、搜索、游标分页、复制账单和 AI SSE。
+
+状态：DONE
+
+### Task 027：实现账单详情修改删除与余额冲销
+
+负责角色：@项目总控 / @需求分析师 / @后端工程师 / @数据库工程师 / @测试工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-07-14
+
+完成内容：
+
+1. 实现 `GET /api/v1/transactions/{id}`，按当前用户和未删除状态隔离账单详情。
+2. 实现 `PUT /api/v1/transactions/{id}`，支持修改收入或支出的账本、账户、分类、金额、时间和备注。
+3. 修改账单要求携带 `version`，账单或账户并发变化返回 `VERSION_CONFLICT`。
+4. 同账户修改按余额净差额更新，跨账户修改分别冲销旧账户并应用新账户。
+5. 实现 `DELETE /api/v1/transactions/{id}?version=`，软删除并反向冲销余额。
+6. 冲销后余额不得小于 0；余额不足返回 `INSUFFICIENT_BALANCE`，整个响应式事务回滚。
+7. 已删除账单的 `requestId` 禁止复用，返回 `REQUEST_ID_REUSED`，避免唯一键异常透出为 500。
+
+修改文件：
+
+1. `projects/钱迹/backend/src/main/java/com/qianji/ledger/UpdateTransactionRequest.java`
+2. `projects/钱迹/backend/src/main/java/com/qianji/ledger/TransactionRepository.java`
+3. `projects/钱迹/backend/src/main/java/com/qianji/ledger/TransactionService.java`
+4. `projects/钱迹/backend/src/main/java/com/qianji/ledger/TransactionController.java`
+5. `projects/钱迹/backend/src/test/java/com/qianji/QianjiApplicationTests.java`
+6. `projects/钱迹/backend/README.md`
+7. `projects/钱迹/docs/api.md`
+8. `projects/钱迹/.ai-team/HANDOFF.md`
+9. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
+
+验证结果：
+
+- `mvn test`：12 个测试通过，0 失败、0 错误。
+- 测试使用 R2DBC H2，不连接或修改真实 MySQL。
+- 已验证详情、同账户修改、跨账户修改、旧版本冲突、余额不足回滚、越权隔离、软删除和请求标识复用冲突。
+
+风险：
+
+1. 当前只支持 `INCOME` 和 `EXPENSE`，转账与余额调整尚未实现。
+2. 前端仍未接入后端账单接口。
+3. 本轮未对真实 MySQL 写入测试数据；MySQL 结构沿用已验证的 V1/V2/V3。
+
+状态：DONE
+
+### Task 026：精简统计分类标题
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @AI项目书记
+
+完成时间：2026-07-14
+
+完成内容：
+
+1. 删除统计分类标题中的“口径”和“排行”。
+2. 四周期标题统一为时间范围加“支出分类”的简洁格式。
+
+验证结果：
+
+- `npm run build`：通过，Vite 完成 612 个模块构建。
+- 统计模板和脚本中已无“口径”或“排行”文案。
+
+状态：DONE
+
+### Task 025：统计日周月年全模块联动
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-14
+
+完成内容：
+
+1. 统计周期由日、周、月扩展为日、周、月、年四档。
+2. 将趋势、分类金额、分类明细和 AI 提示统一收敛到同一周期数据集。
+3. 切换周期时同步刷新折线图标题与数据、ECharts 环形饼图、分类排行、金额、占比和结构分析。
+4. 分类明细按当前周期读取对应记录，切换周期时关闭旧周期展开项，避免展示过期内容。
+5. 周期切换控件调整为四列，保持移动端按钮尺寸稳定。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/legacy-template.html`
+2. `projects/钱迹/frontend/src/legacy-app.js`
+3. `projects/钱迹/frontend/src/styles.css`
+
+验证结果：
+
+- `npm run build`：通过，Vite 完成 612 个模块构建。
+- 四周期按钮、统一数据集和联动入口已完成代码级检查。
+- 本机浏览器控制运行时初始化冲突，项目也未安装 Playwright，因此本轮未执行自动化视觉回归。
+
+风险：
+
+1. 当前四周期统计仍为前端原型示例数据，后端统计接口尚未实现。
+2. 接入后端后需保持趋势、分类汇总和分类明细使用同一统计口径。
+
+状态：DONE
+
+### Task 024：实现收入支出记账与流水基础查询
+
+负责角色：@项目总控 / @需求分析师 / @后端工程师 / @数据库工程师 / @测试工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-07-14
+
+完成内容：
+
+1. 实现 `POST /api/v1/transactions` 的 `INCOME`、`EXPENSE` 新增能力。
+2. 流水写入和账户余额、版本更新时间在同一响应式事务中完成。
+3. 使用 `user_id + request_id` 实现幂等，重复请求返回首次结果且不重复修改余额。
+4. 校验账本、账户、分类归属和分类收支类型；跨用户资源统一按不存在处理。
+5. 支出余额不足返回 `INSUFFICIENT_BALANCE`，账户并发版本变化返回 `VERSION_CONFLICT`。
+6. 实现 `GET /api/v1/transactions`，支持账本、时间、类型、分类、账户和数量筛选，按发生时间与 ID 倒序。
+7. 明确标签、转账、余额调整、关键词和游标分页后置，避免半成品行为。
+
+验证结果：
+
+- `mvn test`：11 个测试通过，0 失败、0 错误。
+- 测试使用 R2DBC H2，不连接或修改真实 MySQL。
+- 测试链路验证收入 100 元、支出 42 元后余额为 58 元，账户版本为 2。
+- 重复 `requestId` 后流水仍为 2 条；余额不足和跨用户写入均未新增流水。
+- 流水列表按发生时间倒序返回支出、收入。
+
+风险：
+
+1. 当前账户无透支配置，支出余额不足一律拒绝。
+2. 尚未实现账单详情、修改、删除、复制、标签和转账。
+3. 前端仍未接入真实接口，当前网页记账继续使用本地原型数据。
+
+状态：DONE
+
+### Task 023：实现当前用户账本与账户查询
+
+负责角色：@项目总控 / @后端工程师 / @测试工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-07-14
+
+完成内容：
+
+1. 实现 `GET /api/v1/ledgers`，返回 JWT 当前用户可见的未删除账本。
+2. 实现 `GET /api/v1/accounts`，返回 JWT 当前用户可见的账户余额快照与版本信息。
+3. 新增 `LedgerQueryService`、响应 DTO 和 Controller，保持 Controller 不承载业务查询逻辑。
+4. Repository 查询条件强制携带当前用户 ID 和 `deleted_at IS NULL`，避免跨用户读取。
+5. 增加双用户数据隔离测试，验证默认账本与账户 ID 集合不交叉。
+
+验证结果：
+
+- `mvn test`：10 个测试通过，0 失败、0 错误。
+- 测试使用 R2DBC H2，不连接或修改真实 MySQL。
+- 两名测试用户各返回 1 个默认账本和现金、微信、支付宝 3 个账户，ID 集合互不重叠。
+
+风险：
+
+1. 本轮只实现查询；新增账户、余额校准和账单写入尚未实现。
+2. 前端仍使用本地原型数据，尚未调用这两个后端接口。
+
+状态：DONE
+
+### Task 022：建立大模型输出后端校验门与校验后 SSE 契约
+
+负责角色：@项目总控 / @架构师 / @AI工程师 / @后端工程师 / @数据库工程师 / @测试工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-07-14
+
+完成内容：
+
+1. 新增 `AiModelOutputValidator`，将模型原文视为不可信输入，校验严格 JSON 字段、长度、证据键、金额事实、危险内容和理财合规提示。
+2. 新增 `AiValidatedOutput`、`AiValidationContext` 和 `AiValidationResult`，只有校验后的结构化结果允许进入后续持久化与响应链路。
+3. 明确 SSE 采用“后端缓冲完整模型输出 -> 校验 -> 对已校验结果分块重放”，禁止透传上游模型 token。
+4. 新增 V3 迁移，为 AI 分析记录增加校验状态、校验器版本、结果来源和结果摘要字段。
+5. 修复数据库初始化脚本的 Maven 缓存路径，并将迁移等待数量从 V1/V2 更新为 V1/V2/V3。
+6. 更新 AI、架构、接口、数据库和决策文档；新增 `MODEL_OUTPUT_INVALID` 与 `MODEL_OUTPUT_UNSAFE` 契约。
+
+验证结果：
+
+- AI 校验定向测试：5 个测试通过，0 失败、0 错误。
+- 后端全量测试：9 个测试通过，0 失败、0 错误；使用 H2，不连接真实 MySQL。
+- `git diff --check`：通过。
+- MySQL 8 最终验收：Flyway V1/V2/V3 均为 `success=1`，当前 13 张表、14 条系统分类，V3 的 4 个 AI 校验审计字段全部存在。
+- Spring Boot Maven 3.5.13 运行插件已缓存到新的隔离 Maven 仓库，可供初始化脚本离线执行。
+
+风险：
+
+1. 真实模型适配器和 SSE Controller 尚未实现；校验门已可复用，但必须在接入模型时强制调用，不能绕过。
+2. 完整校验后再分块重放会增加首个正文分块等待时间，前端只能用 `GENERATING/VALIDATING` 状态缓解，不得透传原始 token。
+
+状态：DONE
+
+### Task 021：实现用户名密码认证、JWT 会话与注册默认数据
+
+负责角色：@项目总控 / @架构师 / @后端工程师 / @数据库工程师 / @测试工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-07-13
+
+完成内容：
+
+1. 实现用户名密码注册、登录、刷新令牌轮换、退出撤销和当前用户查询接口。
+2. 使用 BCrypt 强度 12 保存密码哈希，并在受控线程池执行阻塞式密码计算；密码 UTF-8 编码限制为 72 字节。
+3. 使用 HS256 JWT、签发方校验和 30 分钟访问令牌；刷新令牌使用 256 位随机值，服务端只保存 SHA-256 哈希。
+4. 刷新令牌每次使用后立即轮换，退出登录撤销当前刷新会话。
+5. 注册在同一响应式事务中创建用户、认证身份、默认账本及现金、微信、支付宝账户。
+6. 补充认证错误码、接口示例、环境变量和当前实现边界。
+
+验证结果：
+
+- `mvn test`：4 个测试通过，0 失败、0 错误。
+- 覆盖注册、重复用户名、错误密码、大小写用户名登录、当前用户、默认数据、令牌轮换、旧令牌失效、退出撤销和参数校验。
+- 测试使用 R2DBC H2 且关闭 Flyway，没有连接或修改真实 MySQL。
+
+风险：
+
+1. V1/V2 迁移和认证链路尚未在 MySQL 8 测试库实际验证。
+2. 退出登录只撤销刷新会话，已签发的访问令牌最多继续有效 30 分钟。
+3. 开发默认 JWT 密钥只用于本地启动，测试及正式环境必须通过 `QIANJI_JWT_SECRET` 覆盖。
+
+状态：DONE
+
+---
+
+### Task 020：建立 WebFlux 后端骨架与 P0 数据库迁移
+
+负责角色：@项目总控 / @架构师 / @数据库工程师 / @后端工程师 / @测试工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-07-13
+
+完成内容：
+
+1. 创建 Java 21 + Spring Boot 3.5.13 WebFlux Maven 工程。
+2. 接入 Spring Data R2DBC、MySQL 响应式驱动、Flyway、Reactive Security、Validation、Actuator 和 Caffeine。
+3. 建立统一成功/错误响应、响应式全局异常处理、公开系统状态接口和默认鉴权边界。
+4. 创建 V1 核心表迁移，覆盖用户、认证、会话、账本、账户、分类、标签、账单、预算和 AI 授权/分析记录。
+5. 创建 V2 默认收支分类数据迁移。
+6. 将转账单流水双账户、账户余额快照、幂等请求、乐观锁和预算唯一作用域落实到数据库结构。
+7. 将接口文档升级为可联调契约，补充认证、账单、统计、预算、AI SSE、错误码和实现状态。
+8. 更新数据库文档、项目 README 和后端启动说明。
+
+验证结果：
+
+- Java 21.0.10、Maven 3.9.4。
+- `mvn test`：2 个测试通过，0 失败、0 错误。
+- 已验证系统状态接口返回 200，未认证业务接口返回 401。
+- 测试使用 R2DBC H2 且关闭 Flyway，没有连接或修改真实 MySQL。
+
+风险：
+
+1. V1/V2 迁移尚未在 MySQL 8 测试库实际执行。
+2. 当前只有后端骨架，JWT、账单 CRUD、统计和 AI SSE 尚未实现。
+3. Maven 在沙箱内读取临时依赖 JAR 时受到 Windows 文件锁限制，最终测试在用户批准的沙箱外环境完成。
+
+状态：DONE
+
+---
+
+### Task 019：修复浏览器 Qwen 乱码输出
+
+负责角色：@项目总控 / @AI工程师 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-13
+
+完成内容：
+
+1. 收紧本地 Qwen 最大生成长度并提高重复惩罚，限制重复词组。
+2. 增加模型输出可读性检查，拦截替换字符、典型乱码和异常重复文本。
+3. 模型输出异常时改用当天真实账单汇总生成基础分析，不再向用户展示乱码。
+4. 页面明确提示当前已切换为本地规则分析，避免把兜底结果伪装成模型回答。
+
+验证方式：
+
+- `npm run build`
+- `git diff --check`
+- 检查乱码检测、重复检测和账单规则兜底调用链。
+
+状态：DONE
+
+---
+
+### Task 018：确认 WebFlux + SSE 后端技术路线
+
+负责角色：@项目总控 / @架构师 / @后端工程师 / @AI工程师 / @AI项目书记
+
+完成时间：2026-07-13
+
+完成内容：
+
+1. 确认后端采用 Java 21、Spring Boot 3 WebFlux 模块化单体和 MySQL 8。
+2. 普通账单业务保持 REST + JSON，AI 对话和自动分析使用 SSE 增量返回。
+3. 定义 `meta`、`delta`、`result`、`error`、`done` 五类 SSE 事件。
+4. 明确断连取消、超时、幂等和结果校验后落库规则。
+5. 记录响应式数据库访问约束，禁止在 Netty 事件线程混用阻塞式 JDBC/MyBatis-Plus。
+
+验证方式：
+
+- 检查架构、接口、决策和交接文档的技术路线一致性。
+- `git diff --check`
+
+状态：DONE
+
+---
+
+### Task 017：竖屏底部导航补充首页
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-13
+
+完成内容：
+
+1. 在竖屏底部导航首位增加“首页”入口并连接 `#overview`。
+2. 底部导航由 5 等分调整为 6 等分，保持所有模块入口宽度稳定。
+
+验证方式：
+
+- `npm run build`
+- `git diff --check`
+- 检查底部导航六个路由入口与激活状态契约。
+
+状态：DONE
+
+---
+
+### Task 016：倾斜卡片方向光效
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-13
+
+完成内容：
+
+1. 复用倾斜卡片的鼠标位置计算，增加透明方向高光层。
+2. 卡片表面高光跟随鼠标移动，最近的边框区域亮度同步增强。
+3. 根据鼠标到最近边缘的距离动态计算边框透明度、表面光强和模糊半径。
+4. 鼠标移出后倾斜与光效平滑复位。
+5. 没有恢复旧版 BorderGlow，也没有加入实色或黑色遮罩。
+
+验证结果：
+
+- `npm run build` 和 `git diff --check` 通过。
+- 高光层只在已绑定的倾斜卡片中创建一次。
+- 动态变量在指针移动和离开时均有明确赋值与复位。
+- 当前浏览器控制被安全策略阻止，本轮未执行视觉自动化。
+
+状态：DONE
+
+---
+
+### Task 015：修复跨页面打开记账浮窗
+
+负责角色：@项目总控 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-13
+
+问题原因：
+
+记账浮窗仍位于首页 `.module-group` 内。切换到其他页面后该父容器被隐藏，导致浮窗状态虽然打开但无法呈现。
+
+修复内容：
+
+浮窗打开时将宿主组临时切换为 `display: contents`，解除父级隐藏，同时保持其他非活动页面模块隐藏。关闭浮窗后恢复原页面分组规则。
+
+验证方式：
+
+- `npm run build`
+- `git diff --check`
+- 检查 `entry-modal-open`、宿主分组和浮窗显隐契约。
+
+状态：DONE
+
+---
+
+### Task 014：记账浮窗、月份控件与浏览器 Qwen
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @AI工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-13
+
+完成内容：
+
+1. 将“记一笔”从首页内容流移为独立模态浮窗，悬浮加号负责打开，支持关闭、取消编辑和保存后自动收起。
+2. 移除金额和备注预填内容，仅保留输入提示。
+3. 将原生月份下拉替换为钱迹主题 12 宫格月份选择器。
+4. 统一反馈类型与反馈内容卡片的标签位置、控件宽度和响应式布局。
+5. 清除 OpenAI 地址和 GPT 模型预设，API Key 默认密码显示并支持显隐。
+6. 增加“内嵌模型 / 自定义 API”切换，当前模型名称随模式和输入实时更新。
+7. 安装 Transformers.js，使用 Web Worker 按需加载 `Qwen2.5-0.5B-Instruct`，显示下载进度并调用浏览器缓存。
+8. 本地模型输入只包含当前日期、当天总额和分类汇总，不直接传输完整用户账单。
+
+验证结果：
+
+- `npm run build` 通过，Worker 和 WASM 资源成功拆包。
+- 旧 OpenAI URL、GPT 模型、预填金额和备注检索无匹配。
+- 新增模板节点与 JS 事件绑定契约检查通过。
+- 本轮未实际下载约 483MB 模型权重，避免未经用户确认产生大流量。
+- 本地浏览器预览服务在命令结束后被环境回收，未完成持续视觉回归。
+
+风险：
+
+1. Qwen 量化模型首次下载体积较大，手机端性能和内存需要真机验证。
+2. WebGPU 并非所有浏览器可用，WASM 降级速度较慢。
+3. 自定义 API 正式调用必须迁移到后端代理，避免前端暴露密钥。
+
+状态：DONE
+
+---
+
+### Task 013：自定义日期选择器与后端架构分析
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @架构师 / @数据库工程师 / @后端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 将详情页浏览器原生日期弹层替换为钱迹主题自定义月历。
+2. 支持上月、下月、回到今天、账单日期标记和选中日期。
+3. 选日后同步更新每日明细、总额、饼图和 AI 分析。
+4. 输出后端与数据库架构分析，明确模块、核心链路、数据实体、接口分组、AI 权限和开发顺序。
+5. 建议第一版采用 Spring Boot 3 模块化单体、MySQL 和供应商适配器，暂不引入微服务与消息队列。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/legacy-template.html`
+2. `projects/钱迹/frontend/src/styles.css`
+3. `projects/钱迹/frontend/src/legacy-app.js`
+4. `projects/钱迹/docs/architecture.md`
+5. `projects/钱迹/docs/api.md`
+6. `projects/钱迹/docs/database.md`
+7. `projects/钱迹/docs/decisions.md`
+8. `projects/钱迹/README.md`
+
+验证结果：
+
+- 选择 2026 年 7 月 15 日后，详情日期和数据同步更新，弹层自动关闭。
+- 自定义弹层无横向溢出，不再调用浏览器原生日历弹层。
+- `npm run build` 和 `git diff --check` 通过。
+
+状态：DONE
+
+---
+
+### Task 012：悬浮按钮动效与侧栏自动收回
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 为 AI、沉浸导航、快速记账三个悬浮按钮增加错峰漂浮动画。
+2. 增加桌面悬停抬升旋转、按压回弹和阴影反馈。
+3. 侧栏导航点击后主动释放链接焦点并强制收起。
+4. 鼠标离开侧栏后解除强制状态，允许下次正常悬停展开。
+
+验证结果：
+
+- 三个按钮在不同时间点的 `translate` 数值均发生变化。
+- 点击侧栏统计后进入 `#stats`，焦点清空，侧栏宽度恢复为 72px。
+- `npm run build` 和 `git diff --check` 通过。
+
+状态：DONE
+
+---
+
+### Task 011：页面穿模修复与分层切换动画
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 提升桌面侧栏层级并增强展开背景，修复日历面板覆盖侧栏的穿模问题。
+2. 修复桌面端使用 `100vw` 计算主内容宽度造成的横向滚动。
+3. 为所有模块切换增加淡入、横向滑移和模糊消散动画。
+4. 为余额卡、指标卡、日期单元、账单行、统计排行、理财产品和设置卡片增加错峰上浮动画。
+5. 新动画使用独立 `translate` 属性，避免覆盖倾斜卡片和既有 `transform` 动效。
+6. 保留 `prefers-reduced-motion` 降级规则。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/styles.css`
+2. `projects/钱迹/frontend/src/legacy-app.js`
+3. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
+
+验证方式：
+
+1. `npm run build`
+2. `git diff --check`
+3. 1024×844 桌面视口验证侧栏层级、页面切换动画和横向溢出。
+4. 390×844 手机视口验证页面动画、日期卡片错峰动画和横向溢出。
+
+验证结果：
+
+- 桌面与手机均无横向溢出。
+- 页面切换使用 `viewFlowIn`，卡片使用 `cardCascadeIn`。
+- 动画结束后内容恢复完整不透明和稳定位置。
+
+状态：DONE
+
+---
+
+## 最新补充：2026-07-06 升级为 Vue 项目并接入 WebGL InfiniteMenu
+
+用户明确要求当前页面端从静态网站升级成 Vue 项目，并指出沉浸导航必须使用其提供的 React Bits `InfiniteMenu` 代码效果，而不是 CSS 仿版。
+
+当前修正：
+1. `frontend/` 已升级为 Vite + Vue 3 项目。
+2. 新增 `package.json`、`vite.config.js`、`src/main.js`、`src/App.vue`。
+3. 现有页面 HTML 被迁移为 `src/legacy-template.html`，由 Vue 挂载，避免一次性重写导致已有页面和交互丢失。
+4. 现有样式和交互迁移为 `src/styles.css`、`src/legacy-app.js`，作为 Vue 页面内的旧交互层继续运行。
+5. 移除模板中的旧 CSS 仿版 `.infinite-nav-overlay`，保留圆形导航按钮。
+6. 新增 `src/InfiniteMenu.vue` 和 `src/InfiniteMenu.css`，按用户提供的 React Bits `InfiniteMenu` 思路实现 WebGL2 球面菜单。
+7. 新导航使用 `gl-matrix`，支持拖拽旋转、自动吸附当前项、标题/描述/箭头进入模块。
+8. 点击导航箭头会跳转到当前激活模块，例如 `#wealth`，并自动关闭弹层。
+9. 开发服务可通过 `npm run dev` 启动；本机验证中因 5180 被旧静态服务占用，使用 5181 端口启动 Vite 验证。
+
+验证方式：
+1. `npm install`
+2. `npm run build`
+3. `git diff --check`
+4. 浏览器打开 `http://127.0.0.1:5181/`，确认 Vue 页面挂载。
+5. 浏览器确认旧页面结构存在、旧 CSS 仿版导航弹层不存在、新 WebGL canvas 存在。
+6. 浏览器点击圆形导航按钮，确认 WebGL 导航弹层打开。
+7. 浏览器点击导航箭头，确认 hash 切到目标模块并关闭弹层。
+
+## 最新补充：2026-07-06 登录独立化、统计饼图联动与 AI 助手入口
+
+用户反馈当前饼状图交互不够明显，沉浸导航需要继续贴近参考图；登录页面需要单独做，登录后自动进入首页；隐藏侧栏不应出现登录入口；个人中心需要支持退出登录、AI API 连接设置，并新增可对话的 AI 助手悬浮窗口。
+
+当前修正：
+1. 侧边导航移除“登录”入口，登录页只通过退出登录或直接访问 `#login` 进入。
+2. 进入登录页时自动隐藏侧栏、底部导航、快速记账按钮、沉浸导航按钮和 AI 助手按钮，让登录页呈现独立页面状态。
+3. 登录按钮和微信一键登录按钮继续在页面原型中跳转到首页，不发送真实数据。
+4. 统计饼图增加点击/悬停联动：图上分区、外侧标注、排行行会同步高亮。
+5. 统计排行新增交通分类，饼图中的交通分区也可以展开对应明细。
+6. 分类明细继续支持多开和全部关闭，最后一个明细关闭后清空饼图高亮。
+7. 个人中心新增“AI 接口设置”，支持填写 API 地址、API Key、模型名称；当前为前端原型，仅展示配置状态。
+8. 个人中心新增“退出登录”，点击后进入独立登录页。
+9. 新增 AI 助手悬浮窗口，用户可以输入问题并获得原型回复；正式接入后将复用个人中心配置的 AI API。
+10. 沉浸导航面板继续向用户参考图靠拢，调整了面板比例、圆心、卡片位置和视觉层次。
+
+验证方式：
+1. `node --check projects/钱迹/frontend/app.js`
+2. `git diff --check`
+3. 浏览器验证 `#login` 页面不显示侧栏、底部导航、导航球和 AI 浮窗。
+4. 浏览器验证统计页点击饼图任意分类能高亮并展开对应排行明细。
+5. 浏览器验证个人中心可打开 AI 设置、保存状态、退出登录。
+6. 浏览器验证 AI 助手可打开、输入并追加回复。
+
+## 最新补充：2026-07-06 页面布局与统计交互二次调整
+
+用户对当前页面端提出 7 点调整：侧栏有独立导航后应自动隐藏；首页“记一笔”旁边空白不平衡；钱迹 Logo 需要艺术体；页面字体需要更年轻；日历和详情页过小；统计图需要支持日/周/月切换并学习示例图的标注方式和悬停动效；个人中心隐私模式需要把敏感信息用星号隐藏。
+
+当前实现：
+1. 桌面侧边栏默认收起为 Logo 栏，悬停或聚焦后展开。
+2. 首页新增 AI 今日建议面板，补齐“记一笔”右侧空白。
+3. Logo 改为艺术字风格，页面字体栈改为更轻快的中文无衬线优先。
+4. 日历支持年份、月份选择，上月/下月切换，并按选中年月动态生成日期。
+5. 点击日历具体日期后进入详情页，详情页显示当天流水和当天支出结构饼图。
+6. 统计页支持日、周、月三种走势图切换；分类环形图保留图上标注，并增加悬停放大反馈。
+7. 分类排行可展开，按日期展示该分类下的具体支出记录。
+8. 个人中心隐私模式会将账户总资产、本月预算、提醒等敏感信息替换为 `****`。
+
+验证方式：
+1. `node --check projects/钱迹/frontend/app.js`
+2. `git diff --check`
+3. 浏览器验证桌面端统计页无横向溢出。
+4. 浏览器验证 390×844 手机视口下日历、详情无横向溢出。
+
+## 最新补充：2026-07-06 UI 反馈问题修正
+
+用户反馈：
+1. 年月下拉框弹层背景和文字颜色撞色。
+2. 文字被选中或交互时需要更明显的果冻弹动。
+3. 分类明细不应该统一放在排行列表底部，而要放在对应分类下面。
+4. 沉浸导航和提供的动效方向不一致，且点击选中后没有反应。
+
+当前修正：
+1. 为原生 `select` 和 `option` 增加暗色主题与高亮色，降低下拉文字撞色风险。
+2. 增加 `jellyText` 果冻文字动效，用于文字 hover、导航点击、分类行点击等交互。
+3. 分类明细改为动态插入到当前选中的分类行下方，例如餐饮明细显示在餐饮行下面，通讯明细显示在通讯行下面。
+4. 沉浸导航从点击命中不稳定的 3D 球面布局改为真实环形动态布局，点击卡片后会高亮、跳转模块并关闭弹层。
+
+验证方式：
+1. `node --check projects/钱迹/frontend/app.js`
+2. `git diff --check`
+3. 浏览器验证分类明细位于当前分类行下方。
+4. 浏览器验证沉浸导航点击理财卡片后切换到 `#wealth`。
+
+## 最新补充：2026-07-06 去除果冻动效、重做导航样式与新增登录页
+
+用户反馈当前页面果冻特效存在穿模问题，要求去掉；沉浸导航改成用户截图中“拖动卡片，进入模块”的卡片环绕样式；同时补齐登录界面。
+
+当前修正：
+1. 移除页面中的 `jellyText` 果冻动画和 JS 触发逻辑。
+2. 沉浸导航改为暗色大面板、左侧大标题、中心提示、六张模块卡片环绕分布，并支持拖动旋转。
+3. 导航卡片点击后仍保持模块跳转、选中状态和弹层关闭。
+4. 新增 `#login` 登录页面，包含品牌区、手机号、验证码、进入钱迹、微信一键登录和账本预览。
+5. 侧边导航新增“登录”入口；登录按钮和微信登录按钮在原型中跳转到首页，不发送真实数据。
+6. 登录页在窄桌面和手机端保持单栏，宽屏再启用双栏，避免横向溢出。
+
+验证方式：
+1. `rg -n "jelly|triggerJelly" projects/钱迹/frontend` 无匹配。
+2. `node --check projects/钱迹/frontend/app.js`
+3. `git diff --check`
+4. 浏览器验证 `#login` 页面可显示且无横向溢出。
+5. 浏览器验证沉浸导航点击理财卡片后进入 `#wealth`。
+
+## 最新补充：2026-07-06 统计分类明细支持多开与全关
+
+用户反馈统计分类排行的“下拉框”需要可以多开，也可以全部不开。
+
+当前修正：
+1. 每个分类行都有独立明细容器，不再共用单个 `#categoryDetail`。
+2. 点击分类行会切换当前分类明细开关。
+3. 多个分类可以同时展开。
+4. 再次点击已展开分类会收起该分类。
+5. 初始状态默认全部收起。
+
+验证方式：
+1. `node --check projects/钱迹/frontend/app.js`
+2. `git diff --check`
+3. 浏览器验证餐饮和通讯可同时展开。
+4. 浏览器验证再次点击餐饮只收起餐饮。
+5. 浏览器验证继续点击通讯后全部关闭。
+
+## 最新补充：2026-07-05 动态交互方向确认
+
+用户澄清：喜欢视频里的 UI，主要是喜欢其中的动态交互手感，而不是要求静态视觉完全照搬。
+
+已处理：
+1. 页面端加入滚动入场动效。
+2. 日历账单切换加入刷新反馈。
+3. 理财产品详情切换加入轻量高亮反馈。
+4. 走势图加入绘制动效。
+5. 桌面端卡片加入轻微跟手漂浮反馈。
+6. 加入减少动态效果的兜底规则。
+
+后续注意：
+微信小程序端迁移时，需要用小程序原生动画能力复刻交互手感，并单独验证手机性能。
+
+## 最新补充：2026-07-06 文字邻近动效
+
+用户要求给文字加上 React Bits 的 `VariableProximity` 类动效。当前页面端是原生 HTML/CSS/JS，不是 React 工程，因此未引入 React 与 motion 依赖，而是实现原生等价效果：标题文字按字符拆分，鼠标或触摸靠近时根据距离改变字重、轻微位移、缩放和荧光强度。
+
+影响范围：
+1. `frontend/app.js`
+2. `frontend/styles.css`
+
+后续注意：
+如果后续改成 React 工程，可以再替换为真实 `VariableProximity` 组件；迁移微信小程序时需要用小程序动画能力重做。
+
+## 最新补充：2026-07-06 首页能力词轮播动效
+
+用户提供 React Bits 的 `RotatingText` 组件，希望由 UI 判断加在哪里。设计判断：放在首页主标题中的核心能力词最合适，用于轮播“自动分析 / 看懂账单 / 提醒预算 / 追踪理财”，强化钱迹的产品定位，不影响表单、日历和理财详情等操作区。
+
+当前实现：
+1. `frontend/index.html` 将首页 `h1` 拆成静态文字 + 轮播词槽位。
+2. `frontend/styles.css` 增加字符进入/退出动画和荧光胶囊样式。
+3. `frontend/app.js` 增加原生 `setupRotatingText()`，不引入 React 与 motion 依赖。
+
+后续注意：
+如果项目迁移为 React 工程，可以替换为真实 `RotatingText` 组件；微信小程序端需要用小程序动画能力重新实现。
+
+## 最新补充：2026-07-06 卡片 BorderGlow 与 TiltedCard 动效
+
+用户提供 React Bits 的 `BorderGlow` 和 `TiltedCard`，要求加载到卡片上。当前页面端仍为原生 HTML/CSS/JS，因此继续采用原生等价实现。
+
+设计判断：
+1. `BorderGlow` 适合加在余额卡、指标卡、功能面板和理财产品小卡上，用于靠近边缘时出现流光边框。
+2. `TiltedCard` 适合加在同一批卡片上，用于桌面端鼠标经过时产生轻微透视倾斜和高光反馈。
+3. 不给整个首页大容器强行加边框流光，避免和首页背景字样、装饰图形冲突。
+
+当前实现：
+1. `frontend/styles.css` 增加 `.border-glow-card`、`.edge-light` 和升级后的 `.tilt-card` 样式。
+2. `frontend/app.js` 增加 `setupBorderGlowCards()`，并升级 `bindTiltCards()`。
+3. 动态渲染的理财产品小卡在每次渲染后重新绑定两类动效。
+
+后续注意：
+手机端主要以滚动和点击为主，当前动效限定在支持 hover 的设备上；迁移微信小程序端时需要重新评估性能。
+
+## 最新补充：2026-07-06 数字 Counter 动效
+
+用户提供 React Bits 的 `Counter`，要求加到数字改变上。当前页面端继续采用原生等价实现，没有引入 React 与 motion 依赖。
+
+当前实现：
+1. 日历切换日期时，`今日支出` 和 `每日明细总额` 使用数字滚轮更新。
+2. 每日消费记录金额在重新渲染时使用数字滚轮展示。
+3. 理财产品切换时，产品涨跌幅和持仓金额使用数字滚轮更新。
+4. 首页结余、本月支出、已记账天数在首次加载时初始化为滚轮数字。
+
+设计边界：
+Counter 只用于会变化或关键展示的数字，不套在所有普通说明文字里，避免页面过度动效化。
+
+## 最新补充：2026-07-06 独立 InfiniteMenu 导航入口
+
+用户提供 React Bits 的 `InfiniteMenu`，要求“专门出一个导航图标，点进去就是这样的导航显示”。原组件依赖 WebGL 与 `gl-matrix`，当前页面端是原生静态页，因此未引入新依赖，采用原生 CSS 3D 等价实现。
+
+当前实现：
+1. `frontend/index.html` 增加独立导航图标 `.menu-orb-button` 和沉浸式导航弹层 `.infinite-nav-overlay`。
+2. 弹层内使用 3D 旋转卡片展示总览、记一笔、日历、统计、理财、AI 自动分析。
+3. `frontend/styles.css` 增加球面导航视觉、移动端适配和打开/关闭动效。
+4. `frontend/app.js` 增加 `setupInfiniteNavMenu()`，支持打开关闭、拖动旋转、悬停说明、点击跳转模块。
+
+设计边界：
+该导航是额外的沉浸式入口，不替代底部导航和侧边导航；底部导航仍保留，保证手机端高频操作效率。
+
+## 最新补充：2026-07-06 板块拆分与统计报表重做
+
+用户要求把各个板块分开：理财、个人中心、日历、详情、统计；统计板块需要支出走势图，饼状图参考用户截图。
+
+当前实现：
+1. 页面改为板块切换模式，导航点击后只显示当前板块。
+2. 底部导航改为：日历、详情、统计、理财、我的。
+3. 侧边导航增加：详情、我的。
+4. 日历点击某一天后，自动切换到详情板块并展示当天记录。
+5. 新增个人中心板块，包含用户状态、资产、预算、提醒和设置入口。
+6. 统计板块改为浅色报表风格，新增支出走势图。
+7. 统计饼图改为参考图风格：环形分类图、外侧标注线、支出分类排行和进度条。
+
+设计边界：
+当前仍是页面端原型，统计图使用静态示例数据和 CSS/SVG 实现；后续接入真实数据后，需要由后端提供分类占比、金额和日趋势。
+
+本文件记录 `钱迹` 子项目的长期操作状态。后续切换 AI 工具或继续开发时，应先读取本文件。
+
+---
+
+## 项目状态
+
+项目名称：钱迹
+
+当前阶段：页面端响应式原型
+
+当前重点：
+
+1. 手机优先页面体验。
+2. 完整记账功能清单梳理。
+3. AI 全模块自动分析。
+4. 理财按分类、产品列表、产品详情推进。
+5. UI 视觉方向待按用户提供的视频参考调整。
+
+---
+
+## 当前任务记录
+
+### Task 001：页面端原型与功能范围扩展
+
+负责角色：@项目总控 / @前端工程师 / @产品经理 / @AI项目书记
+
+开始时间：2026-07-05
+
+任务目标：
+
+1. 确认更新后的团队角色和规则。
+2. 将用户提供的完整记账功能清单写入需求文档。
+3. 将理财模块改为分类、产品列表、产品详情结构。
+4. 保持页面端手机优先，同时兼容电脑端。
+
+计划修改文件：
+
+1. `projects/钱迹/frontend/index.html`
+2. `projects/钱迹/frontend/styles.css`
+3. `projects/钱迹/frontend/app.js`
+4. `projects/钱迹/docs/requirements.md`
+5. `projects/钱迹/docs/decisions.md`
+6. `projects/钱迹/README.md`
+
+验证方式：
+
+1. `node --check projects\钱迹\frontend\app.js`
+2. `git diff --check`
+3. 检查页面文件中是否包含理财分类、产品列表、产品详情、完整记账功能清单等关键内容。
+
+状态：DONE
+
+---
+
+### Task 009：网页端全局排版收敛
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 将网页端内容最大宽度统一为 1280px，并使用响应式水平边距。
+2. 将模块主间距收敛到 16/20px，手机端收敛到 12/16px。
+3. 取消日历、详情、统计和个人中心无意义的整屏最小高度，减少大片空白。
+4. 桌面 Hero 高度由偏高布局收敛到 400px，并优化余额卡宽度。
+5. 首页指标卡统一高度和内部对齐；宽屏记账表单改为双列。
+6. 日历单元高度和间距下调，保留可读性并减少纵向拖长。
+7. 每日详情调整为 44% 图表、56% 流水的稳定双栏。
+8. 个人中心入口固定三列，避免宽屏时 `auto-fit` 挤成一排。
+9. 理财产品列表与详情调整栏宽和间距，减少左右失衡。
+10. 手机端保持单列，收紧卡片内边距并优化日历控制换行。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/styles.css`
+
+验证方式：
+
+1. `npm run build`：通过。
+2. `git diff --check`：通过。
+3. CSS 覆盖顺序检查：新排版规则位于旧响应式规则之后并成功覆盖关键尺寸。
+
+风险：
+
+1. 当前浏览器安全策略不允许自动操作本地页面，本轮未执行截图视觉回归。
+
+状态：DONE
+
+---
+
+### Task 008：理财涨跌幅竖排修复
+
+负责角色：@项目总控 / @前端工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 定位理财“乱码”为产品卡片通用 `span` 样式覆盖 Counter 内部元素导致的竖排问题。
+2. 将产品名称与代码样式收窄到直接子元素。
+3. 为涨跌幅 Counter 增加强制单行、禁止换行和正确的滚轮数字布局。
+4. 保留数字变化动画、正负号、小数点和百分号。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/styles.css`
+
+验证方式：
+
+1. `npm run build`：通过。
+2. `git diff --check`：通过。
+3. CSS 优先级检查：产品说明与 Counter 内部布局规则已分离。
+
+状态：DONE
+
+---
+
+### Task 007：日历年份控件与详情日期切换
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 删除日历年份 `number` 输入框及浏览器原生上下微调图标。
+2. 新增钱迹风格的上一年、年份显示、下一年自定义步进器。
+3. 年份范围限制为 2000–2100，切换后同步刷新日历和当前日期账单。
+4. 每日详情增加前一天、日期选择器、后一天控制。
+5. 详情日期切换支持跨月和跨年，并同步更新日历年月、选中日、总额、账单、动态图和 AI 分析。
+6. 日期控件完成桌面紧凑布局和手机端自适应。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/legacy-template.html`
+2. `projects/钱迹/frontend/src/legacy-app.js`
+3. `projects/钱迹/frontend/src/styles.css`
+
+验证方式：
+
+1. `npm run build`：通过。
+2. `git diff --check`：通过。
+3. 静态契约检查：年份与详情日期控件、事件绑定和响应式样式均存在；旧 `calendarYear.value` 引用已移除。
+
+风险：
+
+1. 当前浏览器控制策略仍不允许自动操作本地页面，本轮未执行浏览器点击回归。
+
+状态：DONE
+
+---
+
+### Task 006：个人中心功能页与导航图标升级
+
+负责角色：@项目总控 / @产品经理 / @UI设计师 / @前端工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 将个人中心六个无功能入口改为可进入、可返回的独立设置子页。
+2. 账户管理新增用户名、邮箱、手机号验证码原型、绑定/解绑、修改密码校验和默认资金账户。
+3. 分类与标签支持新增、删除并同步到记账表单选项。
+4. 预算设置支持月总预算、分类预算和超支提醒校验。
+5. 数据导出支持日期范围与 CSV/JSON 文件生成。
+6. 帮助反馈新增常见问题、反馈类型和本地反馈保存。
+7. AI 接口设置纳入统一子页导航，退出登录保留原流程。
+8. 普通用户信息和偏好保存到浏览器本地；密码不写入本地存储。
+9. WebGL 导航图标移除矩形贴图底板、强光和操作提示，改为统一圆形玻璃材质、双层细环和线性图标。
+10. 设置子页完成桌面双/三列布局和手机单列适配。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/legacy-template.html`
+2. `projects/钱迹/frontend/src/legacy-app.js`
+3. `projects/钱迹/frontend/src/styles.css`
+4. `projects/钱迹/frontend/src/App.vue`
+
+验证方式：
+
+1. `npm run build`：通过。
+2. `git diff --check`：通过。
+3. 静态契约检查：六个子页、返回按钮、保存/绑定/导出/反馈事件均存在。
+4. 导航 SVG 检查：旧矩形底板和提示文案已移除，新圆形玻璃主体存在。
+
+风险：
+
+1. 手机短信、真实密码修改、账号同步和服务端反馈需后端接入后实现。
+2. 当前浏览器控制策略不允许继续操作本地地址，本轮未进行浏览器视觉回归，没有使用其他浏览器工具绕过。
+
+状态：DONE
+
+---
+
+### Task 005：每日动态图与账单增删改
+
+负责角色：@项目总控 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 将每日详情的静态 CSS 圆环替换为 ECharts 动态环形图。
+2. 每日图表根据当天账单实时计算分类占比，支持悬停放大、金额提示和账单列表联动。
+3. 为每条账单增加稳定 ID、编辑按钮和删除按钮。
+4. 编辑复用“记一笔”表单，支持修改金额、分类、时间、账户、标签和备注；修改日期时自动移动账单。
+5. 删除账单前弹出二次确认。
+6. 新增、编辑、删除后统一刷新当日总额、日历金额、动态图和 AI 分析。
+7. 用户修改数据写入浏览器本地存储，刷新页面后仍保留。
+8. 金额显示统一保留两位小数。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/legacy-template.html`
+2. `projects/钱迹/frontend/src/legacy-app.js`
+3. `projects/钱迹/frontend/src/styles.css`
+
+验证方式：
+
+1. `npm run build`：通过。
+2. `git diff --check`：通过。
+3. 浏览器完整链路：新增测试账单、编辑金额和备注、刷新确认持久化、确认删除、验证总额和 AI 分析同步恢复。
+4. 测试账单已通过页面删除功能清理。
+
+风险：
+
+1. 当前仍为页面端原型，账单只保存在浏览器本地；正式版本需要后端数据库和用户同步接口。
+2. 最终控制台日志复查被浏览器安全策略停止，未使用其他方式绕过。
+
+状态：DONE
+
+---
+
+### Task 004：统计饼图迁移到 ECharts
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 确认 Element Plus 不提供图表组件，新增 ECharts 作为统计图表引擎。
+2. 将手工 `conic-gradient + clip-path` 环形图替换为真实 ECharts 环形饼图。
+3. 保留钱迹深色荧光配色，增加外侧标签、平滑引导线、金额提示、扇区放大和选中光效。
+4. 点击扇区继续联动对应分类明细，支持多个分类同时展开，也支持全部关闭。
+5. 使用 ECharts 按需模块导入，将图表脚本由完整导入时约 1.16 MB 降至约 469 KB。
+6. 清理理财产品列表中残留的 BorderGlow 调用，修复其阻断页面初始化的问题。
+
+修改文件：
+
+1. `projects/钱迹/frontend/package.json`
+2. `projects/钱迹/frontend/package-lock.json`
+3. `projects/钱迹/frontend/src/legacy-template.html`
+4. `projects/钱迹/frontend/src/legacy-app.js`
+5. `projects/钱迹/frontend/src/styles.css`
+
+验证方式：
+
+1. `npm run build`：通过。
+2. `git diff --check`：通过。
+3. 浏览器验证：ECharts Canvas 正常渲染；点击扇区可开关明细；餐饮和通讯明细可同时展开。
+
+状态：DONE
+
+---
+
+### Task 003：首页卡片动效修复
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 根据用户录屏确认目标为轻量 3D 倾斜与鼠标标签跟随。
+2. 停止为首页余额卡和指标卡绑定动态 BorderGlow，修复鼠标移动时瞬间大面积变黑的问题。
+3. 将倾斜动效限制在首页四张数据卡，大面板和表单保持稳定。
+4. 新增卡片标题跟随标签，移动端自动不启用鼠标跟随效果。
+5. 修复页面入场动画长期占用 `transform`、导致倾斜变量不生效的问题。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/legacy-app.js`
+2. `projects/钱迹/frontend/src/styles.css`
+
+验证方式：
+
+1. `npm run build`：通过。
+2. `git diff --check`：通过。
+3. 浏览器验证：卡片产生真实 `matrix3d` 倾斜，跟随标签可见，动态黑色遮罩与边缘光层均不存在。
+
+状态：DONE
+
+---
+
+## 当前风险
+
+1. 理财行情数据仍为原型示例，后续真实接入需要数据源、频率、合规和成本确认。
+2. 功能清单范围较大，后续必须严格区分 MVP 与后置功能。
+3. 当前仍是静态页面端原型，尚未迁移到微信小程序端。
+
+---
+
+## 下一步建议
+
+1. 由 @产品经理 确认 P0/P1 功能边界。
+2. 由 @架构师 判断正式前端工程和小程序技术路线。
+3. 由 @前端工程师 在当前 UI 基础上工程化页面端。
+4. 用户重新提供或确认视频文件后，由 @UI设计师 提取视频 UI 风格并调整页面端。
+
+---
+
+### Task 002：导航图标直达与统计图动态交互
+
+负责角色：@项目总控 / @UI设计师 / @前端工程师 / @测试工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 将球形导航卡片从渐变文字块改为六种模块线性图标，并保持钱迹深色荧光主题。
+2. 删除导航底部独立直达按钮，轻点中央图标直接进入对应模块，拖拽仍用于旋转导航。
+3. 参考用户视频，为折线图增加曲线绘制入场、指针吸附节点、辅助线和金额浮层。
+4. 为支出饼图增加扇区定向弹出、发光触点以及分类排行联动。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/App.vue`
+2. `projects/钱迹/frontend/src/InfiniteMenu.vue`
+3. `projects/钱迹/frontend/src/InfiniteMenu.css`
+4. `projects/钱迹/frontend/src/legacy-template.html`
+5. `projects/钱迹/frontend/src/legacy-app.js`
+6. `projects/钱迹/frontend/src/styles.css`
+
+验证方式：
+
+1. `npm run build`：通过。
+2. `git diff --check`：通过。
+3. 浏览器验证：导航图标轻点后关闭弹层并进入当前模块；折线图可吸附数据点并显示金额。
+
+风险：
+
+1. 当前统计数据仍为前端示例数据，接入后端后需要保持数据点、标签和金额数组长度一致。
+2. 视频分析临时帧位于 `.tmp-chart-video/`，待用户确认后删除。
+
+状态：DONE
+
+---
+
+### Task 010：理财详情显示修复与文档规范化
+
+负责角色：@项目总控 / @前端工程师 / @文档工程师 / @AI项目书记
+
+完成时间：2026-07-12
+
+完成内容：
+
+1. 修复理财产品详情头部百分比被逐字纵向排列的问题，仅让产品名称和元信息按块展示。
+2. 更新项目 README，使状态、技术栈、运行方式和页面覆盖与当前 Vue 原型一致。
+3. 规范交接摘要，明确已实现原型、未实现后端和下一步工作。
+4. 为项目操作记录增加记录规范、当前事实和 Task 001 至 Task 010 权威索引。
+5. 修正需求、接口和决策文档中的静态页面、视频不可用及后端状态等过期表述。
+
+修改文件：
+
+1. `projects/钱迹/frontend/src/styles.css`
+2. `projects/钱迹/README.md`
+3. `projects/钱迹/docs/requirements.md`
+4. `projects/钱迹/docs/api.md`
+5. `projects/钱迹/docs/decisions.md`
+6. `projects/钱迹/.ai-team/HANDOFF.md`
+7. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
+
+验证方式：
+
+1. `npm run build`
+2. `git diff --check`
+3. 检索 README、HANDOFF 和接口文档中的过期状态描述。
+
+风险：
+
+1. 历史操作详情保留原始追加顺序，任务编号和当前状态以顶部任务索引为准。
+2. 当前浏览器安全策略不允许控制本地地址，本轮无法执行浏览器视觉回归。
+
+状态：DONE

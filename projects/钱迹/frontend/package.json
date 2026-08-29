@@ -1,0 +1,21 @@
+{
+  "name": "qianji-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5180",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 5180"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
+    "echarts": "^6.1.0",
+    "gl-matrix": "^3.4.3",
+    "vue": "^3.5.17"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.4",
+    "vite": "^5.4.19"
+  }
+}

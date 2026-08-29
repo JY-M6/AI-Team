@@ -1,0 +1,21 @@
+spring:
+  r2dbc:
+    url: r2dbc:h2:mem:///qianji;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  flyway:
+    enabled: false
+  cache:
+    type: caffeine
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema-test.sql
+
+qianji:
+  security:
+    jwt:
+      issuer: qianji-backend-test
+      secret: qianji-test-secret-at-least-thirty-two-bytes
+      access-token-ttl: 30m
+      refresh-token-ttl: 30d

@@ -1,0 +1,9 @@
+.tmp-chart-video/
+.tmp-motion-review/
+output/
+frontend/node_modules/
+frontend/dist/
+backend/target/
+backend/backups/
+星河版/output/
+*.log

@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: qianji-backend
+  main:
+    web-application-type: reactive
+  r2dbc:
+    url: ${QIANJI_R2DBC_URL:r2dbc:mysql://127.0.0.1:3306/qianji?sslMode=DISABLED&serverZoneId=Asia/Shanghai}
+    username: ${QIANJI_DB_USERNAME:qianji}
+    password: ${QIANJI_DB_PASSWORD:qianji}
+    pool:
+      enabled: true
+      initial-size: 2
+      max-size: 20
+      max-idle-time: 30m
+  flyway:
+    enabled: ${QIANJI_FLYWAY_ENABLED:true}
+    url: ${QIANJI_JDBC_URL:jdbc:mysql://127.0.0.1:3306/qianji?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    user: ${QIANJI_DB_USERNAME:qianji}
+    password: ${QIANJI_DB_PASSWORD:qianji}
+    locations: classpath:db/migration
+    baseline-on-migrate: false
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=2000,expireAfterWrite=10m
+
+qianji:
+  security:
+    jwt:
+      issuer: qianji-backend
+      secret: ${QIANJI_JWT_SECRET:qianji-dev-only-secret-change-before-production-2026}
+      access-token-ttl: 30m
+      refresh-token-ttl: 30d
+
+server:
+  port: ${QIANJI_SERVER_PORT:8080}
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  level:
+    root: INFO
+    com.qianji: INFO

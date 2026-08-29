@@ -1,56 +1,79 @@
-# 钱迹 HANDOFF
+# 钱迹交接摘要
 
-This is a temporary handoff summary generated from `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`.
+> 更新时间：2026-08-29
+>
+> 长期记录：[PROJECT_OPERATIONS.md](PROJECT_OPERATIONS.md)
 
-For long-term state, read `PROJECT_OPERATIONS.md` first.
+## 当前阶段
 
----
+Vue 3 页面端与后端 P0 核心链路联调收口中。后端 P0 和真实 MySQL V4 迁移已经完成，账户与分类管理页面已接入后端接口；本轮已统一规则、需求、架构、接口与操作记录，准备建立钱迹专项 Git 基线。
 
-## Current Stage
+## 当前实现
 
-Planning and static prototype exploration.
+- 前端：Vue 3 + Vite。
+- 图表：ECharts，包含统计趋势、分类结构和每日结构图；登录后统计页的日、周、月、年趋势、饼图、动态分类列表和展开明细读取后端真实报表。
+- 导航：WebGL2 + gl-matrix 沉浸式导航。
+- 账单：登录后支持通过后端 API 新增、编辑、删除；日历与每日明细会从真实接口刷新。
+- 页面：登录、首页、记账、日历、每日明细、统计、理财、我的及设置子页。
+- AI：各模块已有模拟分析和助手窗口；后端 AI 输出校验门已实现，真实模型 API 与 SSE 尚未接入。
+- 理财：已有分类、产品列表和详情，行情数据仍为模拟数据。
+- 动效：页面切换和页面内卡片采用分层错峰入场，桌面侧栏穿模与横向滚动已修复。
+- 悬浮操作：AI、沉浸导航和快速记账按钮具有错峰漂浮与交互反馈；侧栏切换页面后自动收回。
+- 日期控件：每日详情使用钱迹主题自定义月历，不再使用浏览器原生日历弹层。
+- 后端准备：第一版使用 Java 21、Spring Boot 3 WebFlux 模块化单体 + MySQL；普通业务使用 REST + JSON，AI 对话与自动分析使用 SSE。行情数据源仍待确认。
+- 记账入口：已改为独立模态浮窗，首页不再放置表单。
+- 跨页记账：统计、理财、我的等页面点击加号也可打开浮窗，宿主隐藏问题已修复。
+- 卡片动效：倾斜卡片具有鼠标方向高光，靠近鼠标的边框更亮；实现使用透明光层，不使用旧版黑色 BorderGlow。
+- 移动导航：竖屏底部导航包含首页、日历、详情、统计、理财、我的六个入口。
+- AI 原型：默认使用浏览器按需加载的 `Qwen2.5-0.5B-Instruct`；模型权重未提交仓库，首次分析时下载并缓存。
+- AI 输出保护：浏览器原型仍有规则兜底；后端已新增严格 JSON、证据键、金额事实、危险内容与理财合规校验，模型原文不得直接进入前端。
+- 后端：Java 21 + Spring Boot 3.5.13 WebFlux，已接入 R2DBC、Reactive Security、Flyway、Caffeine、统一响应和异常处理。
+- 后端接口：已实现系统状态、认证、当前用户、账本、账户管理与余额校准、收入/支出/转账完整生命周期、自定义分类、月历、日周月年统计、月总预算与分类预算；AI SSE 仍待实现。
+- 账单一致性：修改和删除会在同一响应式事务中冲销余额；账单与账户使用乐观锁，跨账户修改会同时更新两个账户，余额不足时整笔回滚。
+- 转账一致性：单条 `TRANSFER` 流水关联转出与转入账户，双方余额按账户 ID 固定顺序更新；重复请求不重复转账，目标账户越权或余额不足时整笔回滚。
+- 认证安全：BCrypt 强度 12 在受控线程池执行；JWT 使用 HS256 和签发方校验；刷新令牌只保存哈希并在刷新时轮换。
+- 注册默认数据：注册事务会创建默认账本及现金、微信、支付宝三个账户。
+- AI SSE 契约：后端缓冲完整模型输出，校验通过后再分块重放；禁止透传上游 token，失败时返回规则兜底或明确错误。
+- 数据库：本地 MySQL 8 服务、`qianji` 数据库和专用账号已建立；V1/V2/V3/V4 均执行成功，V4 字段和 CHECK 约束已验证。
+- 前端认证：登录页已切换为用户名密码登录/注册，接入 JWT 会话、刷新令牌、退出登录和鉴权失效回退。
+- 前端基础数据：登录后加载当前用户、默认账本、账户及收支分类；记账转账支持选择目标账户。
+- 前端统计：本月逐日、本月逐周、近 6 月和近 5 年调用真实趋势与分类接口；分类展开按当前周期加载账单明细。
+- 前端预算：首页月结余、月支出、流水数和预算进度读取后端；预算设置保存本月总预算、餐饮和购物分类预算。
+- 账户管理：个人中心支持真实资金账户新增、编辑、删除和余额校准；写操作使用后端版本号，校准会生成余额调整流水。
+- 分类管理：系统支出分类只读，自定义支出分类支持新增、改名和删除；变更后同步刷新记账分类选择器。
+- 标签边界：后端尚无标签契约，自定义标签继续只保存在当前浏览器，并在页面中明确提示。
+- 注册后初始化：流水查询上限已与后端统一为 100；注册完成后可正常进入首页，会话恢复时地址栏同步为 `#overview`。
 
----
+## 必读文件
 
-## Latest Version Note
+1. [项目操作记录](PROJECT_OPERATIONS.md)
+2. [项目说明](../README.md)
+3. [项目规则](../AGENTS.md)
+4. [需求文档](../docs/requirements.md)
+5. [决策记录](../docs/decisions.md)
 
-v2 added the AI project secretary mechanism and live project operation documents.
+## 未完成边界
 
----
+- 手机号或微信登录尚未实现，当前仅支持用户名密码。
+- 账户与分类管理已完成前端接线，但后端服务本轮未启动，真实登录后的写操作仍需人工端到端验收。
+- 登录用户态的统计数值与预算写入仍需使用真实账号做一次人工端到端验收；本轮未代用户创建测试账号或测试账单。
+- Flyway V1/V2/V3/V4 已写入本地 MySQL 8，4 条迁移均为 `success=1`。
+- AI API 和真实理财行情尚未接入。
+- 微信小程序端尚未创建。
+- 页面中的账户、通知、导出等功能目前以交互原型为主。
+- 当前宿主运行完整 WebFlux 测试时无法建立 Netty 本机回环连接，11 个集成测试未进入业务断言；AI 输出校验门 5 个单元测试通过，完整集成套件需在允许本机回环的环境复验。
+- `星河版/` 属于独立视觉实验，尚未并入主 Vue 应用，也不进入本轮钱迹专项 Git 基线。
 
-## Must Read
+## 下一步
 
-1. `projects/钱迹/.ai-team/PROJECT_OPERATIONS.md`
-2. `projects/钱迹/README.md`
-3. `projects/钱迹/AGENTS.md`
-4. `projects/钱迹/docs/requirements.md`
-5. `projects/钱迹/docs/growth.md`
-6. `projects/钱迹/frontend/index.html`
+1. 使用真实账号验收账户新增、编辑、余额校准、删除及自定义分类完整链路。
+2. 验收认证、账单、统计和预算完整链路，并补齐余额不足和版本冲突提示。
+3. P1 再实现标签、搜索、游标分页、账单复制和 AI SSE。
 
----
+## 禁止事项
 
-## Current Known State
-
-- 钱迹 is an intelligent bookkeeping mini-program concept.
-- Static frontend prototype files are present.
-- Product docs exist for requirements, design, AI, growth, API, database, and deployment.
-- Actual mini-program framework is not confirmed.
-- Backend, database, AI provider, and deployment are not implemented.
-
----
-
-## Next Recommended Action
-
-Ask the user whether to:
-
-1. Validate the static frontend prototype.
-2. Decide the mini-program technical stack.
-3. Continue product requirement refinement.
-
----
-
-## Do Not Do
-
-1. Do not implement backend before confirming technical direction.
-2. Do not promise finance returns.
-3. Do not skip operation document updates.
+- 不得把模拟行情、模拟 AI 回复或本地保存描述为真实线上能力。
+- 不得提交 API Key、密码或真实用户数据。
+- 不得让 AI 承诺收益或执行购买、赎回、转账。
+- 不得把模型原文直接保存或透传；所有 AI 输出必须经过后端校验门。
+- 每轮修改后必须同步本文件或项目操作记录。

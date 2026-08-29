@@ -1,0 +1,711 @@
+﻿<div class="app-shell">
+    <aside class="side-nav" aria-label="主导航">
+      <div class="brand">
+        <div class="brand-mark" aria-label="钱迹 logo">迹</div>
+        <div>
+          <strong class="brand-word">钱迹</strong>
+          <span>自动分析型记账</span>
+        </div>
+      </div>
+      <nav class="nav-list">
+        <a class="active" href="#overview">首页</a>
+        <a href="#calendar">日历</a>
+        <a href="#details">详情</a>
+        <a href="#stats">统计</a>
+        <a href="#wealth">理财</a>
+        <a href="#profile">我的</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <section id="login" class="login-screen module-view" data-view="login">
+        <div class="login-copy">
+          <p class="eyebrow">QIANJI ACCOUNT</p>
+          <h1>登录钱迹，继续看见每一笔钱的去向。</h1>
+          <p>手机优先的自动分析型记账工具，登录后同步账本、预算、日历明细和理财观察。</p>
+        </div>
+        <form class="login-card" aria-label="登录表单">
+          <div class="login-brand">
+            <div class="brand-mark">迹</div>
+            <div>
+              <strong>钱迹</strong>
+              <span>自动分析型记账</span>
+            </div>
+          </div>
+          <div class="type-switch login-mode-switch" aria-label="认证方式">
+            <button class="active" type="button" data-auth-mode="login">登录</button>
+            <button type="button" data-auth-mode="register">注册</button>
+          </div>
+          <label>
+            用户名
+            <input id="loginUsername" type="text" autocomplete="username" placeholder="4-32 位字母、数字或下划线" aria-label="用户名">
+          </label>
+          <label>
+            密码
+            <input id="loginPassword" type="password" autocomplete="current-password" placeholder="请输入密码" aria-label="密码">
+          </label>
+          <label id="loginNicknameField" hidden>
+            昵称
+            <input id="loginNickname" type="text" autocomplete="nickname" placeholder="注册后显示的昵称" aria-label="昵称">
+          </label>
+          <button class="primary-button login-submit" type="submit">登录并进入钱迹</button>
+          <small id="loginStatus">登录后使用真实账本数据。注册密码长度为 8-72 位。</small>
+        </form>
+        <div class="login-preview" aria-hidden="true">
+          <span>本月结余</span>
+          <strong>¥ 3,428.60</strong>
+          <i></i>
+          <p>AI：餐饮略高，预算仍在安全区。</p>
+        </div>
+      </section>
+
+      <section id="overview" class="hero-panel module-view is-active" data-view="overview">
+        <div class="hero-copy">
+          <p class="eyebrow">2026 年 7 月账本</p>
+          <h1>
+            <span class="variable-proximity-source">钱不用你费劲复盘，钱迹会</span>
+            <span class="rotating-text" data-rotating-text='["自动分析","看懂账单","提醒预算","追踪理财"]'>自动分析</span>
+            <span class="variable-proximity-source">。</span>
+          </h1>
+          <p class="hero-text">手机优先的页面端原型：记账精确到分钟，日历点哪天看哪天，消费、预算、理财都内嵌 AI 自动分析。</p>
+        </div>
+        <div class="balance-card">
+          <span>本月结余</span>
+          <strong id="monthBalance">¥ 3,428.60</strong>
+          <div class="budget-track">
+            <span id="monthlyBudgetProgress" style="width: 68%"></span>
+          </div>
+          <small id="monthlyBudgetHint">AI 自动判断：本周节奏正常，餐饮略高。</small>
+        </div>
+      </section>
+
+      <section class="quick-grid module-view is-active" data-view="overview" aria-label="本月概览">
+        <article class="metric-card">
+          <span>本月支出</span>
+          <strong id="monthExpense">¥ 4,286</strong>
+          <small id="monthExpenseHint">AI：比上月少 12%，但购物占比上升。</small>
+        </article>
+        <article class="metric-card accent-orange">
+          <span>今日支出</span>
+          <strong id="todayTotal">¥ 168</strong>
+          <small id="todayHint">AI：今天主要花在购物和午餐。</small>
+        </article>
+        <article class="metric-card accent-green">
+          <span>已记账</span>
+          <strong id="monthTransactionCount">23 笔</strong>
+          <small id="monthTransactionHint">AI：持续记账后会形成更准确的月度判断。</small>
+        </article>
+      </section>
+
+      <section class="content-grid module-group has-active">
+        <div class="entry-modal-backdrop" id="entryModalBackdrop" hidden></div>
+        <article id="quick-add" class="panel add-panel entry-modal" role="dialog" aria-modal="true" aria-labelledby="entryModalTitle" hidden>
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">快速操作</p>
+              <h2 id="entryModalTitle">记一笔</h2>
+            </div>
+            <button class="entry-modal-close" id="entryModalClose" type="button" aria-label="关闭记账窗口">×</button>
+          </div>
+          <form class="entry-form" id="entryForm">
+            <div class="type-switch" aria-label="收支类型">
+              <button class="active" type="button">支出</button>
+              <button type="button">收入</button>
+              <button type="button">转账</button>
+            </div>
+            <label>
+              金额
+              <input id="entryAmount" type="number" min="0.01" step="0.01" placeholder="请输入金额" aria-label="金额">
+            </label>
+            <label>
+              分类
+              <select id="entryCategory" aria-label="分类">
+                <option>餐饮</option>
+                <option>交通</option>
+                <option>购物</option>
+                <option>娱乐</option>
+                <option>医疗</option>
+                <option>学习</option>
+              </select>
+            </label>
+            <label>
+              时间
+              <input id="entryTime" type="datetime-local" aria-label="记账时间">
+            </label>
+            <label>
+              账户
+              <select id="entryAccount" aria-label="账户">
+                <option>微信</option>
+                <option>支付宝</option>
+                <option>银行卡</option>
+                <option>信用卡</option>
+                <option>现金</option>
+                <option>零钱通</option>
+              </select>
+            </label>
+            <label id="entryTargetAccountField" hidden>
+              转入账户
+              <select id="entryTargetAccount" aria-label="转入账户"></select>
+            </label>
+            <label>
+              标签
+              <select id="entryTag" aria-label="标签">
+                <option>日常</option>
+                <option>聚餐</option>
+                <option>出差</option>
+                <option>情侣</option>
+                <option>家用</option>
+              </select>
+            </label>
+            <label>
+              备注
+              <input id="entryRemark" type="text" placeholder="写点什么，方便以后回看" aria-label="备注">
+            </label>
+            <div class="inline-ai">
+              <strong>AI 自动提示</strong>
+              <span>默认使用当前时间，后续会根据分类和时间判断是否属于高频消费。</span>
+            </div>
+            <div class="entry-form-actions">
+              <button class="primary-button" id="saveRecordButton" type="button">添加记录</button>
+              <button class="ghost-button" id="cancelEditButton" type="button" hidden>取消编辑</button>
+            </div>
+            <small class="entry-mode-hint" id="entryModeHint">添加后可在每日明细中修改或删除。</small>
+          </form>
+        </article>
+        <article class="panel home-insight-panel module-view is-active" data-view="overview">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">AI 今日建议</p>
+              <h2>今天的钱流向哪里</h2>
+            </div>
+          </div>
+          <div class="home-rhythm">
+            <span>餐饮</span>
+            <strong>偏高</strong>
+            <div><i style="width: 72%"></i></div>
+          </div>
+          <div class="home-rhythm">
+            <span>购物</span>
+            <strong>需复盘</strong>
+            <div><i style="width: 64%"></i></div>
+          </div>
+          <div class="home-rhythm">
+            <span>理财</span>
+            <strong>稳定</strong>
+            <div><i style="width: 42%"></i></div>
+          </div>
+          <div class="inline-ai">
+            <strong>自动分析</strong>
+            <span>建议今天先补齐午餐和晚间消费备注，AI 会把“刚需”和“冲动消费”分开看。</span>
+          </div>
+        </article>
+
+        <article id="calendar" class="panel calendar-panel module-view" data-view="calendar">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">日历账单</p>
+              <h2 id="calendarTitle">2026 年 7 月消费热力</h2>
+            </div>
+            <div class="calendar-controls" aria-label="选择年月">
+              <button class="ghost-button" type="button" id="prevMonth">上月</button>
+              <label class="calendar-control-group">
+                <span>年</span>
+                <span class="year-stepper">
+                  <button type="button" id="prevYear" aria-label="上一年">‹</button>
+                  <output id="calendarYear">2026</output>
+                  <button type="button" id="nextYear" aria-label="下一年">›</button>
+                </span>
+              </label>
+              <div class="calendar-control-group month-picker">
+                <span>月</span>
+                <button class="month-picker-trigger" id="calendarMonthTrigger" type="button" aria-expanded="false"><span id="calendarMonthText">7 月</span><i></i></button>
+                <div class="month-picker-popover" id="calendarMonthPopover" hidden>
+                  <strong>选择月份</strong>
+                  <div class="month-picker-grid" id="calendarMonthGrid"></div>
+                </div>
+              </div>
+              <button class="ghost-button" type="button" id="nextMonth">下月</button>
+            </div>
+          </div>
+          <div class="calendar-grid" aria-label="七月日历">
+            <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+            <button class="muted" type="button" data-day="30">30</button>
+            <button class="spent" type="button" data-day="1">1<small>¥46</small></button>
+            <button type="button" data-day="2">2</button>
+            <button class="spent high" type="button" data-day="3">3<small>¥286</small></button>
+            <button type="button" data-day="4">4</button>
+            <button class="spent" type="button" data-day="5">5<small>¥92</small></button>
+            <button type="button" data-day="6">6</button>
+            <button class="spent" type="button" data-day="7">7<small>¥36</small></button>
+            <button class="today high" type="button" data-day="8">8<small>¥168</small></button>
+            <button type="button" data-day="9">9</button>
+            <button class="spent" type="button" data-day="10">10<small>¥58</small></button>
+            <button type="button" data-day="11">11</button>
+            <button class="spent high" type="button" data-day="12">12<small>¥310</small></button>
+            <button type="button" data-day="13">13</button>
+            <button type="button" data-day="14">14</button>
+            <button class="spent" type="button" data-day="15">15<small>¥73</small></button>
+            <button type="button" data-day="16">16</button>
+            <button type="button" data-day="17">17</button>
+            <button class="spent" type="button" data-day="18">18<small>¥25</small></button>
+            <button type="button" data-day="19">19</button>
+            <button type="button" data-day="20">20</button>
+          </div>
+          <div class="inline-ai calendar-ai">
+            <strong>AI 日历分析</strong>
+            <span id="calendarAi">7 月 8 日支出偏中等，购物类金额占比较高，建议查看是否为一次性消费。</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-grid reverse-on-desktop module-group">
+        <article id="details" class="panel records-panel module-view" data-view="details">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow" id="selectedDate">7 月 8 日</p>
+              <h2>每日明细</h2>
+            </div>
+            <div class="detail-title-actions">
+              <strong class="amount-negative" id="selectedTotal">- ¥168</strong>
+              <div class="detail-date-controls" aria-label="切换明细日期">
+                <button type="button" id="prevDetailDay" aria-label="前一天">‹</button>
+                <div class="detail-date-picker">
+                  <input id="detailDatePicker" type="hidden" value="2026-07-08">
+                  <button class="detail-date-trigger" id="detailDateTrigger" type="button" aria-label="选择明细日期" aria-expanded="false">
+                    <span id="detailDateText">2026/07/08</span><span class="date-trigger-icon" aria-hidden="true"></span>
+                  </button>
+                  <div class="detail-date-popover" id="detailDatePopover" hidden>
+                    <div class="detail-picker-head">
+                      <button type="button" id="detailPickerPrevMonth" aria-label="上个月">‹</button>
+                      <strong id="detailPickerTitle">2026 年 7 月</strong>
+                      <button type="button" id="detailPickerNextMonth" aria-label="下个月">›</button>
+                    </div>
+                    <div class="detail-picker-grid" id="detailPickerGrid" aria-label="选择日期"></div>
+                    <button class="detail-picker-today" id="detailPickerToday" type="button">回到今天</button>
+                  </div>
+                </div>
+                <button type="button" id="nextDetailDay" aria-label="后一天">›</button>
+              </div>
+            </div>
+          </div>
+          <div class="detail-layout">
+            <div class="day-stat-card">
+              <strong>当天支出结构</strong>
+              <div id="dayExpensePieChart" class="day-pie" role="img" aria-label="当天支出饼图"></div>
+            </div>
+            <div>
+          <div class="record-list" id="recordList"></div>
+          <div class="inline-ai records-ai">
+            <strong>AI 明细分析</strong>
+            <span id="recordAi">今天有 3 笔消费，购物金额最大。若不是刚需，可加入本月“可减少支出”清单。</span>
+          </div>
+            </div>
+          </div>
+        </article>
+
+        <article id="stats" class="panel stats-panel module-view" data-view="stats">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">AI 报表</p>
+              <h2>支出统计</h2>
+            </div>
+            <div class="period-switch" aria-label="统计周期">
+              <button class="active" type="button" data-period="day">日</button>
+              <button type="button" data-period="week">周</button>
+              <button type="button" data-period="month">月</button>
+              <button type="button" data-period="year">年</button>
+            </div>
+          </div>
+          <div class="trend-card">
+            <div>
+              <strong id="trendTitle">本月每日支出走势</strong>
+              <span id="trendAi">AI：12 日和 3 日是明显高点，购物类支出推高了峰值。</span>
+            </div>
+            <svg class="expense-line-chart" viewBox="0 0 320 150" role="img" aria-label="7 月支出走势图">
+              <defs>
+                <linearGradient id="expenseTrendFill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(215, 255, 50, 0.28)" />
+                  <stop offset="100%" stop-color="rgba(215, 255, 50, 0)" />
+                </linearGradient>
+              </defs>
+              <path id="trendArea" class="trend-area" d="M0 116 L42 92 L84 120 L126 44 L168 86 L210 68 L252 34 L294 98 L320 76 L320 150 L0 150 Z"></path>
+              <polyline id="trendLine" class="trend-line" pathLength="1" points="0,116 42,92 84,120 126,44 168,86 210,68 252,34 294,98 320,76"></polyline>
+              <g id="trendDots" class="trend-dots">
+                <circle cx="0" cy="116" r="4"></circle>
+                <circle cx="42" cy="92" r="4"></circle>
+                <circle cx="84" cy="120" r="4"></circle>
+                <circle cx="126" cy="44" r="4"></circle>
+                <circle cx="168" cy="86" r="4"></circle>
+                <circle cx="210" cy="68" r="4"></circle>
+                <circle cx="252" cy="34" r="4"></circle>
+                <circle cx="294" cy="98" r="4"></circle>
+                <circle cx="320" cy="76" r="4"></circle>
+              </g>
+              <line id="trendGuide" class="trend-guide" x1="0" y1="20" x2="0" y2="138"></line>
+              <g id="trendFocus" class="trend-focus">
+                <circle class="trend-focus-pulse" cx="0" cy="0" r="10"></circle>
+                <circle class="trend-focus-dot" cx="0" cy="0" r="5"></circle>
+                <g class="trend-tooltip" transform="translate(-34 -36)">
+                  <rect width="68" height="25" rx="8"></rect>
+                  <text id="trendTooltipText" x="34" y="17" text-anchor="middle">¥0</text>
+                </g>
+              </g>
+            </svg>
+            <div class="trend-days" id="trendLabels">
+              <span>07.01</span>
+              <span>07.06</span>
+              <span>07.11</span>
+              <span>07.16</span>
+              <span>07.21</span>
+              <span>07.26</span>
+              <span>07.31</span>
+            </div>
+          </div>
+          <div class="report-card">
+            <h3 id="categoryRankTitle">本月支出分类</h3>
+            <div class="report-donut-wrap">
+              <div id="expensePieChart" class="report-donut expense-pie-chart" role="img" aria-label="支出分类环形图"></div>
+            </div>
+            <div class="rank-list">
+              <div class="rank-row food" data-category="food">
+                <span class="rank-no">1</span>
+                <span class="rank-icon">餐</span>
+                <strong>餐饮</strong>
+                <em>31%</em>
+                <b>- ¥51.00</b>
+                <i></i>
+              </div>
+              <div class="category-detail" data-category-detail="food"></div>
+              <div class="rank-row phone" data-category="phone">
+                <span class="rank-no">2</span>
+                <span class="rank-icon">讯</span>
+                <strong>通讯</strong>
+                <em>23%</em>
+                <b>- ¥37.00</b>
+                <i></i>
+              </div>
+              <div class="category-detail" data-category-detail="phone"></div>
+              <div class="rank-row fun" data-category="fun">
+                <span class="rank-no">3</span>
+                <span class="rank-icon">娱</span>
+                <strong>娱乐</strong>
+                <em>22%</em>
+                <b>- ¥35.00</b>
+                <i></i>
+              </div>
+              <div class="category-detail" data-category-detail="fun"></div>
+              <div class="rank-row beauty" data-category="beauty">
+                <span class="rank-no">4</span>
+                <span class="rank-icon">美</span>
+                <strong>美容</strong>
+                <em>18%</em>
+                <b>- ¥29.65</b>
+                <i></i>
+              </div>
+              <div class="category-detail" data-category-detail="beauty"></div>
+              <div class="rank-row traffic" data-category="traffic">
+                <span class="rank-no">5</span>
+                <span class="rank-icon">行</span>
+                <strong>交通</strong>
+                <em>6%</em>
+                <b>- ¥12.00</b>
+                <i></i>
+              </div>
+              <div class="category-detail" data-category-detail="traffic"></div>
+            </div>
+          </div>
+          <div class="inline-ai stats-ai">
+            <strong>AI 结构分析</strong>
+            <span id="statsStructureAi">餐饮占比最高，通讯和娱乐接近。建议先把餐饮预算拆成工作餐与聚餐，月底更容易判断是否超支。</span>
+          </div>
+        </article>
+      </section>
+
+      <section id="wealth" class="panel wealth-panel module-view" data-view="wealth">
+        <div class="panel-title">
+          <div>
+            <p class="eyebrow">理财产品库</p>
+            <h2>分类看产品，点进去看详情</h2>
+          </div>
+          <button class="ghost-button" type="button">更新数据</button>
+        </div>
+        <div class="wealth-layout">
+          <div class="category-tabs" aria-label="理财产品分类">
+            <button class="active" type="button" data-category="etf">ETF 基金</button>
+            <button type="button" data-category="fund">主动基金</button>
+            <button type="button" data-category="cash">现金管理</button>
+            <button type="button" data-category="deposit">存款</button>
+            <button type="button" data-category="bond">债券固收</button>
+          </div>
+          <div class="wealth-content">
+            <div class="product-list" id="productList" aria-label="产品列表"></div>
+            <article class="product-detail">
+              <div class="product-head">
+                <div>
+                  <p class="eyebrow" id="detailCategory">ETF 基金</p>
+                  <h3 id="detailName">半导体 ETF</h3>
+                  <span id="detailCode">512480 · 行业主题</span>
+                </div>
+                <b class="up" id="detailChange">+1.86%</b>
+              </div>
+              <svg class="sparkline large" viewBox="0 0 260 92" role="img" aria-label="产品走势示意">
+                <polyline id="detailLine" points="0,70 32,62 64,66 96,44 128,50 160,28 192,34 228,20 260,30"></polyline>
+              </svg>
+              <div class="product-meta">
+                <span id="detailHolding">持仓：¥ 3,200</span>
+                <span id="detailRisk">风险：中高</span>
+                <span id="detailTrend">近 30 日：波动偏大</span>
+              </div>
+              <div class="inline-ai">
+                <strong>AI 产品分析</strong>
+                <span id="detailAi">半导体主题波动更明显，不建议用短期生活费追高，可控制在可承受比例内。</span>
+              </div>
+            </article>
+          </div>
+        </div>
+        <small class="risk-note">以上为页面原型示例数据，仅用于展示交互，不构成投资建议。</small>
+      </section>
+
+      <section id="profile" class="panel profile-panel module-view" data-view="profile">
+        <div class="profile-main" id="profileMain">
+        <div class="panel-title">
+          <div>
+            <p class="eyebrow">个人中心</p>
+            <h2>我的钱迹</h2>
+          </div>
+          <button class="ghost-button" type="button" id="privacyToggle" aria-pressed="false">隐私模式</button>
+        </div>
+        <div class="profile-head">
+          <div class="profile-avatar">钱</div>
+          <div>
+            <strong id="profileDisplayName">钱迹用户</strong>
+            <span>连续记账 6 天，本月已记录 23 天</span>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <article>
+            <span>账户总资产</span>
+            <strong class="sensitive" data-private="¥ 36,820.50">¥ 36,820.50</strong>
+            <small>现金、微信、支付宝、银行卡合计</small>
+          </article>
+          <article>
+            <span>本月预算</span>
+            <strong class="sensitive" data-private="剩余 32%">剩余 32%</strong>
+            <small>餐饮预算使用偏快，AI 建议下周控制聚餐</small>
+          </article>
+          <article>
+            <span>提醒</span>
+            <strong class="sensitive" data-private="3 项">3 项</strong>
+            <small>信用卡还款、工资入账、基金定投提醒</small>
+          </article>
+        </div>
+        <div class="profile-actions">
+          <button type="button" data-profile-page="accountSettingsPanel">账户管理</button>
+          <button type="button" data-profile-page="categorySettingsPanel">分类与标签</button>
+          <button type="button" data-profile-page="budgetSettingsPanel">预算设置</button>
+          <button type="button" data-profile-page="exportSettingsPanel">数据导出</button>
+          <button type="button" data-profile-page="helpSettingsPanel">帮助反馈</button>
+          <button type="button" id="profileSettings" data-profile-page="apiSettingsPanel">AI 接口设置</button>
+          <button type="button" id="logoutButton">退出登录</button>
+        </div>
+        <div class="inline-ai">
+          <strong>AI 个人建议</strong>
+          <span>你的记账稳定性不错，可以先开启餐饮分类预算和信用卡还款提醒，减少月底集中复盘压力。</span>
+        </div>
+        </div>
+
+        <section class="settings-panel profile-subpage" id="accountSettingsPanel" hidden>
+          <div class="subpage-head">
+            <button class="subpage-back" type="button" data-profile-back aria-label="返回个人中心">←</button>
+            <div><p class="eyebrow">ACCOUNT</p><h3>账户管理</h3></div>
+          </div>
+          <div class="settings-section">
+            <h4>基本信息</h4>
+            <div class="settings-grid two-column">
+              <label>用户名<input id="profileName" type="text" value="钱迹用户" aria-label="用户名"></label>
+              <label>邮箱<input id="profileEmail" type="email" placeholder="name@example.com" aria-label="邮箱"></label>
+            </div>
+            <div class="settings-actions"><button class="primary-button" id="saveProfileInfo" type="button">保存信息</button><span id="profileInfoStatus"></span></div>
+          </div>
+          <div class="settings-section">
+            <h4>手机号</h4>
+            <div class="phone-status"><span>当前绑定</span><strong id="boundPhone">未绑定</strong></div>
+            <div class="settings-grid phone-grid">
+              <label>手机号<input id="phoneNumber" type="tel" maxlength="11" aria-label="绑定手机号"></label>
+              <label>验证码<input id="phoneCode" type="text" maxlength="6" aria-label="手机验证码"></label>
+            </div>
+            <div class="settings-actions">
+              <button class="ghost-button" id="sendPhoneCode" type="button">获取验证码</button>
+              <button class="primary-button" id="bindPhone" type="button">绑定手机</button>
+              <button class="danger-button" id="unbindPhone" type="button">解除绑定</button>
+              <span id="phoneStatus"></span>
+            </div>
+          </div>
+          <div class="settings-section">
+            <h4>修改密码</h4>
+            <div class="settings-grid three-column">
+              <label>当前密码<input id="currentPassword" type="password" aria-label="当前密码"></label>
+              <label>新密码<input id="newPassword" type="password" minlength="8" aria-label="新密码"></label>
+              <label>确认新密码<input id="confirmPassword" type="password" minlength="8" aria-label="确认新密码"></label>
+            </div>
+            <div class="settings-actions"><button class="primary-button" id="updatePassword" type="button">更新密码</button><span id="passwordStatus">原型不会保存密码。</span></div>
+          </div>
+          <div class="settings-section">
+            <h4>资金账户</h4>
+            <p class="settings-copy">账户余额由账单自动更新。手工校准会生成一条“余额调整”流水。</p>
+            <div class="fund-account-list" id="fundAccountList"><p class="settings-empty">登录后加载资金账户。</p></div>
+            <form class="account-editor" id="accountEditor">
+              <input id="editingAccountId" type="hidden">
+              <div class="settings-grid two-column">
+                <label>账户名称<input id="accountName" type="text" maxlength="64" placeholder="例如：工资卡" required></label>
+                <label>账户类型<select id="accountType" required><option value="CASH">现金</option><option value="WECHAT">微信</option><option value="ALIPAY">支付宝</option><option value="BANK_CARD">银行卡</option><option value="CREDIT_CARD">信用卡</option><option value="CHANGE">零钱通</option><option value="OTHER">其他</option></select></label>
+              </div>
+              <div class="settings-actions"><button class="primary-button" id="saveAccount" type="submit">新增账户</button><button class="ghost-button" id="cancelAccountEdit" type="button" hidden>取消编辑</button><span id="accountSettingsStatus"></span></div>
+            </form>
+            <form class="account-balance-editor" id="accountBalanceEditor" hidden>
+              <strong id="balanceAccountName">余额校准</strong>
+              <input id="balanceAccountId" type="hidden">
+              <div class="settings-grid two-column">
+                <label>校准后余额<input id="targetAccountBalance" type="number" min="0" step="0.01" required></label>
+                <label>备注<input id="balanceAdjustmentNote" type="text" maxlength="500" placeholder="例如：核对银行卡余额"></label>
+              </div>
+              <div class="settings-actions"><button class="primary-button" type="submit">确认校准</button><button class="ghost-button" id="cancelBalanceAdjustment" type="button">取消</button></div>
+            </form>
+          </div>
+        </section>
+
+        <section class="settings-panel profile-subpage" id="categorySettingsPanel" hidden>
+          <div class="subpage-head">
+            <button class="subpage-back" type="button" data-profile-back aria-label="返回个人中心">←</button>
+            <div><p class="eyebrow">ORGANIZE</p><h3>分类与标签</h3></div>
+          </div>
+          <div class="settings-section">
+            <h4>支出分类</h4>
+            <div class="editable-chip-list" id="expenseCategoryList"></div>
+            <div class="inline-create"><input id="newExpenseCategory" type="text" maxlength="64" placeholder="新分类" aria-label="新支出分类"><button class="primary-button" id="addExpenseCategory" type="button">新增分类</button><button class="ghost-button" id="cancelCategoryEdit" type="button" hidden>取消编辑</button></div>
+            <small class="settings-copy">系统分类不可修改；自定义分类可改名或删除。</small>
+          </div>
+          <div class="settings-section">
+            <h4>自定义标签</h4>
+            <div class="editable-chip-list" id="customTagList"></div>
+            <div class="inline-create"><input id="newCustomTag" type="text" placeholder="新标签" aria-label="新自定义标签"><button class="primary-button" id="addCustomTag" type="button">新增标签</button></div>
+          </div>
+          <span class="settings-status" id="categorySettingsStatus"></span>
+        </section>
+
+        <section class="settings-panel profile-subpage" id="budgetSettingsPanel" hidden>
+          <div class="subpage-head">
+            <button class="subpage-back" type="button" data-profile-back aria-label="返回个人中心">←</button>
+            <div><p class="eyebrow">BUDGET</p><h3>预算设置</h3></div>
+          </div>
+          <div class="settings-grid three-column">
+            <label>月总预算<input id="monthlyBudget" type="number" min="0" value="6000" aria-label="月总预算"></label>
+            <label>餐饮预算<input id="foodBudget" type="number" min="0" value="1800" aria-label="餐饮预算"></label>
+            <label>购物预算<input id="shoppingBudget" type="number" min="0" value="1200" aria-label="购物预算"></label>
+          </div>
+          <label class="toggle-row"><input id="budgetAlert" type="checkbox" checked><span>预算达到 80% 时提醒</span></label>
+          <div class="settings-actions"><button class="primary-button" id="saveBudgetSettings" type="button">保存预算</button><span id="budgetSettingsStatus"></span></div>
+        </section>
+
+        <section class="settings-panel profile-subpage" id="exportSettingsPanel" hidden>
+          <div class="subpage-head">
+            <button class="subpage-back" type="button" data-profile-back aria-label="返回个人中心">←</button>
+            <div><p class="eyebrow">EXPORT</p><h3>数据导出</h3></div>
+          </div>
+          <div class="settings-grid three-column">
+            <label>开始日期<input id="exportStartDate" type="date" value="2026-07-01" aria-label="导出开始日期"></label>
+            <label>结束日期<input id="exportEndDate" type="date" value="2026-07-31" aria-label="导出结束日期"></label>
+            <label>文件格式<select id="exportFormat" aria-label="导出格式"><option value="csv">CSV</option><option value="json">JSON</option></select></label>
+          </div>
+          <div class="settings-actions"><button class="primary-button" id="exportRecords" type="button">生成导出</button><span id="exportStatus">仅导出当前浏览器中的账单。</span></div>
+        </section>
+
+        <section class="settings-panel profile-subpage" id="helpSettingsPanel" hidden>
+          <div class="subpage-head">
+            <button class="subpage-back" type="button" data-profile-back aria-label="返回个人中心">←</button>
+            <div><p class="eyebrow">SUPPORT</p><h3>帮助反馈</h3></div>
+          </div>
+          <div class="faq-list">
+            <details><summary>账单为什么没有同步到其他设备？</summary><p>当前是本地页面原型，正式账号同步将在后端接入后开放。</p></details>
+            <details><summary>AI 建议会自动修改账单吗？</summary><p>不会。AI 只提供分析建议，账单修改始终由用户确认。</p></details>
+            <details><summary>如何保护资产隐私？</summary><p>可在个人中心开启隐私模式，资产与提醒信息会隐藏。</p></details>
+          </div>
+          <div class="settings-grid feedback-grid">
+            <label>反馈类型<select id="feedbackType" aria-label="反馈类型"><option>功能建议</option><option>问题反馈</option><option>数据问题</option></select></label>
+            <label>反馈内容<textarea id="feedbackContent" rows="5" placeholder="请描述遇到的问题或希望增加的功能" aria-label="反馈内容"></textarea></label>
+          </div>
+          <div class="settings-actions"><button class="primary-button" id="submitFeedback" type="button">提交反馈</button><span id="feedbackStatus"></span></div>
+        </section>
+
+        <section class="settings-panel profile-subpage" id="apiSettingsPanel" hidden>
+          <div class="subpage-head">
+            <button class="subpage-back" type="button" data-profile-back aria-label="返回个人中心">←</button>
+            <div>
+              <p class="eyebrow">AI SETTINGS</p>
+              <h3>AI 模型设置</h3>
+            </div>
+          </div>
+          <div class="model-status-card">
+            <span>当前使用模型</span>
+            <strong id="currentModelName">Qwen2.5-0.5B-Instruct</strong>
+            <small id="localModelStatus">首次分析时下载并缓存，当前尚未加载</small>
+            <progress id="localModelProgress" max="100" value="0" hidden></progress>
+          </div>
+          <div class="ai-mode-switch" aria-label="AI 运行方式">
+            <button class="active" type="button" data-ai-mode="local">内嵌模型</button>
+            <button type="button" data-ai-mode="api">自定义 API</button>
+          </div>
+          <div class="settings-grid ai-api-fields" id="aiApiFields" hidden>
+            <label>
+              API 地址
+              <input id="apiBaseUrl" type="url" placeholder="例如：https://你的服务地址/v1" aria-label="AI API 地址">
+            </label>
+            <label class="api-key-field">
+              API Key
+              <span><input id="apiKey" type="password" placeholder="请输入 API Key" aria-label="AI API Key"><button id="toggleApiKey" type="button" aria-label="显示 API Key">显示</button></span>
+            </label>
+            <label>
+              模型名称
+              <input id="apiModel" type="text" placeholder="例如：qwen-plus" aria-label="AI 模型名称">
+            </label>
+          </div>
+          <div class="settings-actions">
+            <button class="primary-button" type="button" id="saveApiSettings">保存设置</button>
+            <span id="apiSettingsStatus">默认使用浏览器内嵌 Qwen 模型，无需 API Key。</span>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="底部导航">
+      <a class="active" href="#overview">首页</a>
+      <a href="#calendar">日历</a>
+      <a href="#details">详情</a>
+      <a href="#stats">统计</a>
+      <a href="#wealth">理财</a>
+      <a href="#profile">我的</a>
+    </nav>
+    <button class="menu-orb-button" type="button" aria-label="打开沉浸导航" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <button class="floating-add" type="button" aria-label="快速记一笔">+</button>
+    <button class="ai-assistant-fab" type="button" aria-label="打开 AI 助手" aria-expanded="false">AI</button>
+    <section class="ai-assistant-panel" aria-label="AI 助手" aria-hidden="true">
+      <div class="ai-assistant-head">
+        <div>
+          <strong>钱迹 AI 助手</strong>
+          <span id="aiConnectionStatus">未连接 API，先用本地原型回复</span>
+        </div>
+        <button type="button" id="closeAiAssistant" aria-label="关闭 AI 助手">×</button>
+      </div>
+      <div class="ai-chat-list" id="aiChatList">
+        <p class="ai-message assistant">我会结合你的账单、日历、统计和理财信息自动分析。你可以先问：这个月哪里花多了？</p>
+      </div>
+      <form class="ai-chat-form">
+        <input id="aiChatInput" type="text" placeholder="问问钱迹 AI..." aria-label="AI 对话输入">
+        <button type="submit">发送</button>
+      </form>
+    </section>
+  </div>
